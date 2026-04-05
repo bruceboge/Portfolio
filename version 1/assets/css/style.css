@@ -1,106 +1,61 @@
-/*
- * ============================================================
- *  BRUCE BOGE — Portfolio Stylesheet
- *  File: style.css
- *
- *  TABLE OF CONTENTS
- *  ─────────────────
- *   1.  CSS Custom Properties (Design Tokens)
- *   2.  Global Reset
- *   3.  Reused / Shared Styles
- *   4.  Main Layout  (.main-container)
- *   5.  Sidebar      (.sidebar, .sidebar-info, .contacts-list, .social-list)
- *   6.  Navbar       (.navbar, .navbar-list, .navbar-link)
- *   7.  About Section (.about-text)
- *   8.  Services     (.service, .service-list, .service-item)
- *   9.  Testimonials (.testimonials-list, .content-card, .modal-container)
- *  10.  Clients      (.clients-list, .client-card)
- *  11.  Tech Stack   (.skills-section, .skills-icon-list, .skill-icon-item)
- *  12.  Resume       (.timeline, .skill-progress-fill)
- *  13.  Portfolio    (.filter-list, .project-list, .project-item)
- *  14.  Blog         (.blog-posts-list)
- *  15.  Contact      (.mapbox, .contact-form, .form-btn)
- *  16.  GitHub       (.vg-grid, .vg-card, .vg-modal)
- *  17.  Footer       (.footer)
- *  18.  Responsive Breakpoints
- *        ├── 450px+   (small mobile tweaks)
- *        ├── 580px+   (tablet portrait)
- *        ├── 768px+   (tablet landscape)
- *        ├── 1024px+  (desktop — side-by-side, sticky sidebar, navbar repositioned)
- *        └── 1250px+  (wide desktop — larger container, bigger avatar)
- *
- *  DESIGN TOKENS (Section 1 — :root)
- *  ───────────────────────────────────
- *  All design decisions live in CSS Custom Properties.
- *  NEVER hardcode colours, font sizes, or shadows outside :root.
- *
- *  To change the accent colour:   update --orange-yellow-crayola
- *  To change the card background:  update --eerie-black-2
- *  To change the page background:  update --smoky-black
- *  To change font sizes globally:  update --fs-1 through --fs-8
- *    (580px+ breakpoint also overrides these for tablet scaling)
- *
- *  BREAKPOINT PHILOSOPHY
- *  ──────────────────────
- *  Mobile-first: base styles target small screens.
- *  Media queries ADD complexity at wider viewports.
- *    < 480px   — single-column project grid
- *    480px+    — base project list (2 columns implicit)
- *    450px+    — clients + skills item sizing
- *    580px+    — font scale-up, wider sidebar/article, tablet layout
- *    768px+    — desktop filter buttons visible, 2-col project grid explicit
- *    1024px+   — MAJOR: side-by-side sidebar+content, sticky sidebar, navbar anchored top-right
- *    1250px+   — wider max-width (1200px), larger avatar
- *
- *  HOW TO ADD A NEW SECTION:
- *  1. Add a new article in index.html with a unique data-page value.
- *  2. Add its styles here in a new //===== MY SECTION ===== block.
- *  3. Add responsive overrides inside the appropriate @media blocks.
- * ============================================================
+/*-----------------------------------*\
+  #style.css
+\*-----------------------------------*/
+
+
+/**
+ * copyright 2022 @codewithsadee
  */
 
-/* ============================================================
-   1. CSS CUSTOM PROPERTIES (Design Tokens)
-   ─────────────────────────────────────────
-   All visual tokens are defined here.
-   Change values here to retheme the entire portfolio globally.
-   ============================================================ */
+
+
+
+
+/*-----------------------------------*\
+  #CUSTOM PROPERTY
+\*-----------------------------------*/
+
 :root {
-  /* Gradients */
+
+  /**
+   * colors
+   */
+
+  /* gradient */
+
   --bg-gradient-onyx: linear-gradient(
-    to bottom right,
-    hsl(240, 1%, 25%) 3%,
+    to bottom right, 
+    hsl(240, 1%, 25%) 3%, 
     hsl(0, 0%, 19%) 97%
   );
   --bg-gradient-jet: linear-gradient(
-      to bottom right,
-      hsla(240, 1%, 18%, 0.251) 0%,
-      hsla(240, 2%, 11%, 0) 100%
-    ),
-    hsl(240, 2%, 13%);
+    to bottom right, 
+    hsla(240, 1%, 18%, 0.251) 0%, 
+    hsla(240, 2%, 11%, 0) 100%
+  ), hsl(240, 2%, 13%);
   --bg-gradient-yellow-1: linear-gradient(
-    to bottom right,
-    hsl(45, 100%, 71%) 0%,
+    to bottom right, 
+    hsl(45, 100%, 71%) 0%, 
     hsla(36, 100%, 69%, 0) 50%
   );
   --bg-gradient-yellow-2: linear-gradient(
-      135deg,
-      hsla(45, 100%, 71%, 0.251) 0%,
-      hsla(35, 100%, 68%, 0) 59.86%
-    ),
-    hsl(240, 2%, 13%);
+    135deg, 
+    hsla(45, 100%, 71%, 0.251) 0%, 
+    hsla(35, 100%, 68%, 0) 59.86%
+  ), hsl(240, 2%, 13%);
   --border-gradient-onyx: linear-gradient(
-    to bottom right,
-    hsl(0, 0%, 25%) 0%,
+    to bottom right, 
+    hsl(0, 0%, 25%) 0%, 
     hsla(0, 0%, 25%, 0) 50%
   );
   --text-gradient-yellow: linear-gradient(
-    to right,
-    hsl(45, 100%, 72%),
+    to right, 
+    hsl(45, 100%, 72%), 
     hsl(35, 100%, 68%)
   );
 
-  /* Solid Colors */
+  /* solid */
+
   --jet: hsl(0, 0%, 22%);
   --onyx: hsl(240, 1%, 17%);
   --eerie-black-1: hsl(240, 2%, 13%);
@@ -114,8 +69,14 @@
   --light-gray-70: hsla(0, 0%, 84%, 0.7);
   --bittersweet-shimmer: hsl(0, 43%, 51%);
 
-  /* Typography */
-  --ff-poppins: "Poppins", sans-serif;
+  /**
+   * typography
+   */
+
+  /* font-family */
+  --ff-poppins: 'Poppins', sans-serif;
+
+  /* font-size */
   --fs-1: 24px;
   --fs-2: 18px;
   --fs-3: 17px;
@@ -124,31 +85,40 @@
   --fs-6: 14px;
   --fs-7: 13px;
   --fs-8: 11px;
+
+  /* font-weight */
   --fw-300: 300;
   --fw-400: 400;
   --fw-500: 500;
   --fw-600: 600;
 
-  /* Shadows */
+  /**
+   * shadow
+   */
+  
   --shadow-1: -4px 8px 24px hsla(0, 0%, 0%, 0.25);
   --shadow-2: 0 16px 30px hsla(0, 0%, 0%, 0.25);
   --shadow-3: 0 16px 40px hsla(0, 0%, 0%, 0.25);
   --shadow-4: 0 25px 50px hsla(0, 0%, 0%, 0.15);
   --shadow-5: 0 24px 80px hsla(0, 0%, 0%, 0.25);
 
-  /* Transitions */
+  /**
+   * transition
+   */
+
   --transition-1: 0.25s ease;
   --transition-2: 0.5s ease-in-out;
+
 }
 
-/* ============================================================
-   2. GLOBAL RESET
-   ──────────────────
-   Strips browser defaults for consistent cross-browser rendering.
-   display:block on img/ion-icon/span prevents inline baseline issues.
-   ::selection applies the accent colour to text selections.
-   ============================================================ */
-/* ===== GLOBAL RESET ===== */
+
+
+
+
+/*-----------------------------------*\
+  #RESET
+\*-----------------------------------*/
+
 *, *::before, *::after {
   margin: 0;
   padding: 0;
@@ -185,23 +155,16 @@ input, textarea {
 
 html { font-family: var(--ff-poppins); }
 
-body {
-  background: var(--smoky-black);
-  color: var(--white-1);
-  line-height: 1.6;
-}
+body { background: var(--smoky-black); }
 
-/* ============================================================
-   3. REUSED / SHARED STYLES
-   ──────────────────────────
-   .sidebar + article: The dark card shell (shared background, border, radius).
-   .separator:         Thin horizontal rule between sidebar sections.
-   .icon-box:          Small square icon container (used in sidebar contacts + timeline).
-   .article-title:     Section heading with gold underline accent bar.
-   .h2–h5:             Heading scale using design token font sizes.
-   article.active:     Controls which page is visible (JS adds/removes .active).
-   ============================================================ */
-/* ===== REUSED STYLES ===== */
+
+
+
+
+/*-----------------------------------*\
+  #REUSED STYLE
+\*-----------------------------------*/
+
 .sidebar,
 article {
   background: var(--eerie-black-2);
@@ -257,14 +220,20 @@ article.active {
   100% { opacity: 1; }
 }
 
-.h2, .h3, .h4, .h5 {
+.h2,
+.h3,
+.h4,
+.h5 {
   color: var(--white-2);
   text-transform: capitalize;
 }
 
 .h2 { font-size: var(--fs-1); }
+
 .h3 { font-size: var(--fs-2); }
+
 .h4 { font-size: var(--fs-4); }
+
 .h5 {
   font-size: var(--fs-7);
   font-weight: var(--fw-500);
@@ -286,10 +255,9 @@ article.active {
   border-radius: 3px;
 }
 
-/* Scrollbar for has-scrollbar elements */
 .has-scrollbar::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+  width: 5px; /* for vertical scrollbar */
+  height: 5px; /* for horizontal scrollbar */
 }
 
 .has-scrollbar::-webkit-scrollbar-track {
@@ -324,37 +292,28 @@ article.active {
   z-index: -1;
 }
 
-/* ============================================================
-   4. MAIN LAYOUT
-   ────────────────
-   .main-container wraps sidebar + main-content.
-   At 1024px+ (responsive section) it becomes flex-row side-by-side.
-   ============================================================ */
-/* ===== MAIN LAYOUT ===== */
-.main-container {
+
+
+
+
+/*-----------------------------------*\
+  #MAIN
+\*-----------------------------------*/
+
+main {
   margin: 15px 12px;
   margin-bottom: 75px;
   min-width: 259px;
 }
 
-/* ============================================================
-   5. SIDEBAR
-   ────────────
-   Mobile: max-height collapses to name+avatar only.
-           .sidebar.active expands it via max-height transition.
-   Desktop (1024px+): always expanded, position:sticky.
 
-   .sidebar-info      — Always visible header row (avatar + name + toggle)
-   .info_more-btn     — "Show Contacts" button (hidden at 1024px+ via breakpoint)
-   .sidebar-info_more — Expandable contacts block (opacity:0 → 1 on .active)
-   .contacts-list     — Grid of contact rows (icon + label + value)
-   .social-list       — Row of social icon links
 
-   HOW TO UPDATE:
-   - Compact spacing: adjust .separator margin and .contacts-list gap
-   - Avatar size: change .avatar-box img width in base and 1250px breakpoint
-   ============================================================ */
-/* ===== SIDEBAR ===== */
+
+
+/*-----------------------------------*\
+  #SIDEBAR
+\*-----------------------------------*/
+
 .sidebar {
   margin-bottom: 15px;
   max-height: 112px;
@@ -375,11 +334,6 @@ article.active {
 .avatar-box {
   background: var(--bg-gradient-onyx);
   border-radius: 20px;
-}
-
-.avatar-box img {
-  width: 80px;
-  border-radius: inherit;
 }
 
 .info-content .name {
@@ -470,9 +424,7 @@ article.active {
 
 .contact-info :is(.contact-link, time, address) {
   color: var(--white-2);
-  font-size: var(--fs-8);
-  overflow-wrap: anywhere;
-  word-break: break-word;
+  font-size: var(--fs-7);
 }
 
 .contact-info address { font-style: normal; }
@@ -491,18 +443,17 @@ article.active {
   font-size: 18px;
 }
 
+
 .social-item .social-link:hover { color: var(--light-gray); }
 
-/* ============================================================
-   6. NAVBAR
-   ──────────
-   Mobile: fixed to the bottom of the screen (position:fixed, bottom:0).
-   Desktop (1024px+): repositioned to top-right of the article card
-   via position:absolute in the 1024px breakpoint.
 
-   .navbar-link.active — Highlighted tab (gold colour, JS-controlled)
-   ============================================================ */
-/* ===== NAVBAR ===== */
+
+
+
+/*-----------------------------------*\
+  #NAVBAR
+\*-----------------------------------*/
+
 .navbar {
   position: fixed;
   bottom: 0;
@@ -536,13 +487,14 @@ article.active {
 
 .navbar-link.active { color: var(--orange-yellow-crayola); }
 
-/* ============================================================
-   7. ABOUT SECTION
-   ──────────────────
-   .about-text — The bio/intro paragraphs.
-   .service     — "What I'm Doing" service cards block.
-   ============================================================ */
-/* ===== ABOUT SECTION ===== */
+
+
+
+
+/*-----------------------------------*\
+  #ABOUT
+\*-----------------------------------*/
+
 .about .article-title { margin-bottom: 15px; }
 
 .about-text {
@@ -554,7 +506,12 @@ article.active {
 
 .about-text p { margin-bottom: 15px; }
 
-/* Service Section */
+
+
+/**
+ * #service 
+ */
+
 .service { margin-bottom: 35px; }
 
 .service-title { margin-bottom: 20px; }
@@ -587,43 +544,22 @@ article.active {
 
 .service-icon-box img { margin: auto; }
 
-.service-icon-box {
-  font-size: 40px;
-  color: var(--orange-yellow-crayola);
-}
-
 .service-content-box { text-align: center; }
 
-.service-item-title {
-  margin-bottom: 7px;
-  color: var(--white-2);
-  font-size: var(--fs-4);
-  font-weight: var(--fw-600);
-}
+.service-item-title { margin-bottom: 7px; }
 
 .service-item-text {
   color: var(--light-gray);
   font-size: var(--fs-6);
-  font-weight: var(--fw-300);
+  font-weight: var(--fw-3);
   line-height: 1.6;
 }
 
-/* ============================================================
-   9. TESTIMONIALS
-   ─────────────────
-   Horizontal scroll carousel using scroll-snap.
-   Each .content-card has an avatar positioned outside its top edge.
 
-   .testimonials-list — Flex row, overflow-x: auto, scroll-snap
-   .content-card      — Individual review card (clickable → opens modal)
-   .modal-container   — Fixed full-screen overlay wrapper
-   .overlay           — Semi-transparent backdrop (click to close)
-   .testimonials-modal — The white panel inside the modal
+/**
+ * #testimonials 
+ */
 
-   HOW TO CHANGE CARD SIZE: adjust .testimonials-item min-width
-   at the appropriate breakpoint (base, 450px, 580px, 1024px).
-   ============================================================ */
-/* ===== TESTIMONIALS ===== */
 .testimonials { margin-bottom: 30px; }
 
 .testimonials-title { margin-bottom: 20px; }
@@ -671,7 +607,11 @@ article.active {
   overflow: hidden;
 }
 
-/* ===== TESTIMONIALS MODAL ===== */
+
+/**
+ * #testimonials-modal
+ */
+
 .modal-container {
   position: fixed;
   top: 0;
@@ -781,195 +721,55 @@ article.active {
   line-height: 1.6;
 }
 
-/* ============================================================
-  10. CLIENTS
-   ────────────
-   Horizontal scroll carousel of client logo cards.
-   Each card uses a CSS custom property --client-color
-   (set inline in HTML via style="--client-color: hsl(...)").
 
-   .clients-list  — flex, nowrap, overflow-x: auto (single-row)
-   .client-card   — individual card with accent top border + hover lift
-   .client-icon   — icon wrapper that tints on hover
-   .client-name   — bold client name
-   .client-desc   — small subtitle below name
+/**
+ * #clients 
+ */
 
-   HOW TO CHANGE ACCENT COLOR FOR A CLIENT:
-   Update style="--client-color: hsl(H, S%, L%)" in index.html.
-
-   HOW TO ADD A CLIENT: see index.html <!-- CLIENTS --> comment.
-   ============================================================ */
-/* ===== CLIENTS ===== */
-.clients { margin-bottom: 20px; }
-
-.clients-title { margin-bottom: 20px; }
+.clients { margin-bottom: 15px; }
 
 .clients-list {
   display: flex;
-  flex-wrap: nowrap;
-  align-items: stretch;
-  gap: 14px;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 15px;
   margin: 0 -15px;
-  padding: 10px 15px 25px;
+  padding: 25px;
+  padding-bottom: 25px;
   overflow-x: auto;
   scroll-behavior: smooth;
   overscroll-behavior-inline: contain;
   scroll-snap-type: inline mandatory;
+  scroll-padding-inline: 25px;
 }
 
 .clients-item {
-  flex: 0 0 auto;
-  min-width: 145px;
+  min-width: 50%;
   scroll-snap-align: start;
 }
 
-/* The client card itself */
-.client-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
+.clients-item img {
   width: 100%;
-  height: 140px;
-  padding: 18px 14px;
-  background: var(--border-gradient-onyx);
-  border-radius: 16px;
-  border-top: 3px solid var(--client-color, var(--orange-yellow-crayola));
-  box-shadow: var(--shadow-2);
-  position: relative;
-  z-index: 1;
-  cursor: pointer;
-  text-align: center;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  text-decoration: none;
+  filter: grayscale(1);
+  transition: var(--transition-1);
 }
 
-.client-card::before {
-  content: "";
-  position: absolute;
-  inset: 3px 1px 1px 1px;
-  background: var(--bg-gradient-jet);
-  border-radius: inherit;
-  z-index: -1;
-}
+.clients-item img:hover { filter: grayscale(0); }
 
-.client-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 35px hsla(0, 0%, 0%, 0.4),
-              0 0 0 1px var(--client-color, var(--orange-yellow-crayola));
-}
 
-.client-icon {
-  font-size: 28px;
-  color: var(--client-color, var(--orange-yellow-crayola));
-  line-height: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-  background: hsla(0, 0%, 100%, 0.04);
-  border-radius: 12px;
-  margin-bottom: 2px;
-  transition: background 0.25s ease;
-}
 
-.client-card:hover .client-icon {
-  background: color-mix(in srgb, var(--client-color, var(--orange-yellow-crayola)) 15%, transparent);
-}
 
-.client-name {
-  color: var(--white-2);
-  font-size: var(--fs-6);
-  font-weight: var(--fw-600);
-  letter-spacing: 0.3px;
-  line-height: 1.2;
-}
 
-.client-desc {
-  color: var(--light-gray-70);
-  font-size: var(--fs-8);
-  font-weight: var(--fw-300);
-  line-height: 1.3;
-}
+/*-----------------------------------*\
+  #RESUME
+\*-----------------------------------*/
 
-/* ============================================================
-  11. TECH STACK CAROUSEL
-   ─────────────────────────
-   Always a single horizontal scrolling row of icon tiles.
-   flex-wrap: nowrap is enforced — icons never wrap to a second line.
-   At 1024px+ icons grow slightly but remain in one row.
-
-   .skills-icon-list  — flex row, nowrap, overflow-x: auto, scroll-snap
-   .skill-icon-item   — fixed-size tile: icon image + label text below
-
-   HOW TO ADD ICONS: see index.html <!-- TECH STACK --> comment.
-   HOW TO CHANGE ICON SIZE: update width/height on .skill-icon-item
-   and adjust the img width inside it.
-   ============================================================ */
-/* ===== TECH STACK (CAROUSEL) ===== */
-.skills-section { margin-bottom: 10px; }
-
-.skills-title { margin-bottom: 20px; }
-
-.skills-icon-list {
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 12px;
-  margin: 0 -15px;
-  padding: 20px 15px;
-  padding-bottom: 30px;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  overscroll-behavior-inline: contain;
-  scroll-snap-type: inline mandatory;
-}
-
-.skill-icon-item {
-  flex: 0 0 auto;
-  width: 75px;
-  height: 80px;
-  scroll-snap-align: center;
-  background: var(--border-gradient-onyx);
-  box-shadow: var(--shadow-2);
-  border-radius: 14px;
-  padding: 12px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 6px;
-  position: relative;
-  z-index: 1;
-}
-
-.skill-icon-item::before {
-  content: "";
-  position: absolute;
-  inset: 1px;
-  background: var(--bg-gradient-jet);
-  border-radius: inherit;
-  z-index: -1;
-}
-
-.skill-icon-item img {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
-}
-
-.skill-icon-label {
-  color: var(--light-gray-70);
-  font-size: var(--fs-8);
-  font-weight: var(--fw-400);
-  text-align: center;
-}
-
-/* ===== RESUME ===== */
 .article-title { margin-bottom: 30px; }
+
+
+/**
+ * education and experience 
+ */
 
 .timeline { margin-bottom: 30px; }
 
@@ -1029,44 +829,26 @@ article.active {
   line-height: 1.6;
 }
 
-/* Linear Skills (Resume page) */
-.skill { margin-top: 30px; }
 
-.skills-list {
-  background: var(--border-gradient-onyx);
-  padding: 20px;
-  border-radius: 14px;
-  box-shadow: var(--shadow-2);
-  position: relative;
-  z-index: 1;
-}
+/**
+ * skills 
+ */
 
-.skills-list::before {
-  content: "";
-  position: absolute;
-  inset: 1px;
-  background: var(--bg-gradient-jet);
-  border-radius: inherit;
-  z-index: -1;
-}
+.skills-title { margin-bottom: 20px; }
+
+.skills-list { padding: 20px; }
+
 
 .skills-item:not(:last-child) { margin-bottom: 15px; }
 
-.skills-item .title-wrapper {
+.skill .title-wrapper {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 5px;
   margin-bottom: 8px;
 }
 
-.skills-item .title-wrapper h5 {
-  font-size: var(--fs-6);
-  font-weight: var(--fw-500);
-  color: var(--white-1);
-}
-
-.skills-item .title-wrapper data {
+.skill .title-wrapper data {
   color: var(--light-gray);
   font-size: var(--fs-7);
   font-weight: var(--fw-300);
@@ -1085,24 +867,14 @@ article.active {
   border-radius: inherit;
 }
 
-/* ============================================================
-  13. PORTFOLIO
-   ──────────────
-   Filterable 2-column grid of project cards.
-   Items have display:none by default; JS adds .active to
-   show matching items.
 
-   .filter-list         — Desktop category buttons (hidden < 768px)
-   .filter-select-box   — Mobile dropdown (hidden at 768px+)
-   .project-list        — CSS grid: 2 columns by default (1 col < 480px)
-   .project-item.active — Visible card with border, gradient bg, hover lift
-   .project-img         — Image wrapper with hover overlay + eye icon
 
-   HOW TO ADD A PROJECT: see index.html <!-- PORTFOLIO --> comment.
-   HOW TO CHANGE COLUMNS: update grid-template-columns in .project-list
-   and the 768px/1024px breakpoint overrides.
-   ============================================================ */
-/* ===== PORTFOLIO ===== */
+
+
+/*-----------------------------------*\
+  #PORTFOLIO
+\*-----------------------------------*/
+
 .filter-list { display: none; }
 
 .filter-select-box {
@@ -1158,19 +930,13 @@ article.active {
   border-radius: 8px;
 }
 
-.select-item button:hover { background: hsla(240, 2%, 20%, 1); }
+.select-item button:hover { --eerie-black-2: hsl(240, 2%, 20%); }
 
 .project-list {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  grid-template-columns: 1fr;
+  gap: 30px;
   margin-bottom: 10px;
-}
-
-@media (max-width: 479px) {
-  .project-list {
-    grid-template-columns: 1fr;
-  }
 }
 
 .project-item { display: none; }
@@ -1178,28 +944,6 @@ article.active {
 .project-item.active {
   display: block;
   animation: scaleUp 0.25s ease forwards;
-  background: var(--border-gradient-onyx);
-  border: 1px solid var(--jet);
-  border-radius: 14px;
-  padding: 15px;
-  position: relative;
-  z-index: 1;
-  box-shadow: var(--shadow-2);
-  transition: var(--transition-1);
-}
-
-.project-item.active::before {
-  content: "";
-  position: absolute;
-  inset: 1px;
-  background: var(--bg-gradient-jet);
-  border-radius: inherit;
-  z-index: -1;
-}
-
-.project-item.active:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-3);
 }
 
 @keyframes scaleUp {
@@ -1212,10 +956,10 @@ article.active {
 .project-img {
   position: relative;
   width: 100%;
-  height: 160px;
-  border-radius: 12px;
+  height: 200px;
+  border-radius: 16px;
   overflow: hidden;
-  margin-bottom: 12px;
+  margin-bottom: 15px;
 }
 
 .project-img::before {
@@ -1234,6 +978,7 @@ article.active {
 
 .project-item-icon-box {
   --scale: 0.8;
+
   background: var(--jet);
   color: var(--orange-yellow-crayola);
   position: absolute;
@@ -1281,7 +1026,14 @@ article.active {
   font-weight: var(--fw-300);
 }
 
-/* ===== BLOG ===== */
+
+
+
+
+/*-----------------------------------*\
+  #BLOG
+\*-----------------------------------*/
+
 .blog-posts { margin-bottom: 10px; }
 
 .blog-posts-list {
@@ -1351,13 +1103,6 @@ article.active {
   margin-bottom: 10px;
   line-height: 1.3;
   transition: var(--transition-1);
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
-  -webkit-box-orient: vertical;
-  text-overflow: ellipsis;
-  color: var(--white-1);
 }
 
 .blog-post-item > a:hover .blog-item-title { color: var(--orange-yellow-crayola); }
@@ -1367,28 +1112,16 @@ article.active {
   font-size: var(--fs-6);
   font-weight: var(--fw-300);
   line-height: 1.6;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  line-clamp: 3;
-  -webkit-box-orient: vertical;
-  text-overflow: ellipsis;
 }
 
-/* ============================================================
-  15. CONTACT
-   ────────────
-   .mapbox        — Google Maps iframe container
-   .contact-form  — Form wrapper with title
-   .form-input    — Shared style for all inputs and textarea
-   .input-wrapper — 2-column row for name + email (at 580px+)
-   .form-btn      — Submit button (disabled by default via HTML)
 
-   HOW TO CONNECT TO REAL EMAIL SERVICE:
-   In script.js, find form.addEventListener("submit") and replace
-   the alert() with a fetch() call. See script.js docs for examples.
-   ============================================================ */
-/* ===== CONTACT ===== */
+
+
+
+/*-----------------------------------*\
+  #CONTACT
+\*-----------------------------------*/
+
 .mapbox {
   position: relative;
   height: 250px;
@@ -1405,7 +1138,7 @@ article.active {
   width: 100%;
   height: 100%;
   border: none;
-  filter: none;
+  filter: grayscale(1) invert(1);
 }
 
 .contact-form { margin-bottom: 10px; }
@@ -1488,250 +1221,74 @@ textarea.form-input::-webkit-resizer { display: none; }
 
 .form-btn:disabled:hover::before { background: var(--bg-gradient-jet); }
 
-/* ===== VISUALGIT (GITHUB INTEGRATION) ===== */
-.vg-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 20px;
-}
 
-.vg-card {
-  background: var(--border-gradient-onyx);
-  border: 1px solid var(--jet);
-  border-radius: 14px;
-  padding: 20px;
-  transition: var(--transition-1);
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  z-index: 1;
-  box-shadow: var(--shadow-2);
-}
 
-.vg-card::before {
-  content: "";
-  position: absolute;
-  inset: 1px;
-  background: var(--bg-gradient-jet);
-  border-radius: inherit;
-  z-index: -1;
-}
 
-.vg-card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-3);
-}
 
-.vg-card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 15px;
-}
+/*-----------------------------------*\
+  #RESPONSIVE
+\*-----------------------------------*/
 
-.vg-card-header h3 {
-  color: var(--white-2);
-  font-size: var(--fs-4);
-  font-weight: var(--fw-600);
-}
-
-.vg-lang {
-  color: var(--orange-yellow-crayola);
-  font-size: var(--fs-8);
-  font-weight: var(--fw-300);
-  background: var(--onyx);
-  padding: 3px 8px;
-  border-radius: 4px;
-}
-
-.vg-desc {
-  color: var(--light-gray);
-  font-size: var(--fs-6);
-  font-weight: var(--fw-300);
-  line-height: 1.6;
-  margin-bottom: 20px;
-  flex-grow: 1;
-}
-
-.vg-stats {
-  font-size: var(--fs-7);
-  color: var(--light-gray-70);
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 15px;
-  padding-bottom: 15px;
-  border-bottom: 1px solid var(--jet);
-}
-
-.vg-actions {
-  display: flex;
-  gap: 15px;
-  flex-wrap: wrap;
-}
-
-.vg-actions a,
-.vg-actions button {
-  color: var(--orange-yellow-crayola);
-  font-size: var(--fs-7);
-  font-weight: var(--fw-500);
-  text-decoration: none;
-  cursor: pointer;
-  background: none;
-  border: none;
-  padding: 0;
-  transition: var(--transition-1);
-}
-
-.vg-actions a:hover,
-.vg-actions button:hover {
-  color: var(--vegas-gold);
-  text-decoration: underline;
-}
-
-.vg-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.8);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  opacity: 1;
-  visibility: visible;
-  transition: var(--transition-1);
-}
-
-.vg-modal.hidden {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
-
-.vg-modal-content {
-  background: var(--eerie-black-2);
-  border: 1px solid var(--jet);
-  max-width: 800px;
-  width: 90%;
-  max-height: 85vh;
-  overflow-y: auto;
-  border-radius: 20px;
-  padding: 30px;
-  position: relative;
-  box-shadow: var(--shadow-5);
-}
-
-#vg-close-modal {
-  position: absolute;
-  top: 15px;
-  right: 20px;
-  background: none;
-  color: var(--light-gray);
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  transition: var(--transition-1);
-}
-
-#vg-close-modal:hover { color: var(--orange-yellow-crayola); }
-
-#vg-readme-body {
-  color: var(--light-gray);
-  line-height: 1.6;
-}
-
-#vg-readme-body h1,
-#vg-readme-body h2,
-#vg-readme-body h3 {
-  color: var(--white-2);
-  border-bottom: 1px solid var(--jet);
-  padding-bottom: 0.5rem;
-  margin-top: 1.5rem;
-  margin-bottom: 1rem;
-}
-
-#vg-readme-body p { margin-bottom: 1rem; }
-
-#vg-readme-body pre {
-  background: var(--onyx);
-  padding: 1rem;
-  border-radius: 8px;
-  overflow-x: auto;
-}
-
-#vg-readme-body code { font-family: monospace; }
-
-/* ===== FOOTER ===== */
-.footer {
-  margin-top: 20px;
-  text-align: center;
-  padding: 20px;
-  border-top: 1px solid var(--jet);
-  background: var(--eerie-black-2);
-  border-radius: 20px;
-  box-shadow: var(--shadow-1);
-}
-
-.copyright {
-  color: var(--light-gray);
-  font-size: var(--fs-7);
-}
-
-/* ============================================================
-   RESPONSIVE BREAKPOINTS (ported from version 1)
-   ============================================================ */
-
-/* ============================================================
-  18. RESPONSIVE BREAKPOINTS
-   ──────────────────────────
-   Mobile-first: add progressively wider styles here.
-   Do NOT repeat base rules — only override what changes.
-
-   QUICK REFERENCE:
-   ┌──────────┬────────────────────────────────────────────────────┐
-   │ 450px+   │ Clients item sizing, project/blog image height auto  │
-   │ 580px+   │ Font scale-up, sidebar expands, tablet layout        │
-   │ 768px+   │ Desktop filter shown, 2-col project/blog grid        │
-   │ 1024px+  │ SIDE-BY-SIDE layout, sticky sidebar, navbar top-right│
-   │ 1250px+  │ Wider container (1200px), larger avatar (130px)      │
-   └──────────┴────────────────────────────────────────────────────┘
-   ============================================================ */
-
-/*
- * 450px+
- * ────────
- * Minor tweaks: client item sizing, image heights made auto.
+/**
+ * responsive larger than 450px screen
  */
+
 @media (min-width: 450px) {
 
+  /**
+   * client
+   */
+
   .clients-item { min-width: calc(33.33% - 10px); }
+
+
+
+  /**
+   * #PORTFOLIO, BLOG 
+   */
 
   .project-img,
   .blog-banner-box { height: auto; }
 
-  .skill-icon-item { min-width: calc(25% - 12px); }
-
 }
 
+
+
+
+
 /**
- * 580px+
+ * responsive larger than 580px screen
  */
+
 @media (min-width: 580px) {
 
+  /**
+   * CUSTOM PROPERTY
+   */
+
   :root {
-    --fs-1: 26px;
-    --fs-2: 20px;
-    --fs-3: 20px;
-    --fs-4: 17px;
-    --fs-6: 14px;
-    --fs-7: 13px;
-    --fs-8: 11px;
+
+    /**
+     * typography
+     */
+
+    --fs-1: 32px;
+    --fs-2: 24px;
+    --fs-3: 26px;
+    --fs-4: 18px;
+    --fs-6: 15px;
+    --fs-7: 15px;
+    --fs-8: 12px;
+
   }
 
-  .sidebar,
-  article {
+
+
+  /**
+   * #REUSED STYLE
+   */
+
+  .sidebar, article {
     width: 520px;
     margin-inline: auto;
     padding: 30px;
@@ -1754,10 +1311,22 @@ textarea.form-input::-webkit-resizer { display: none; }
     font-size: 18px;
   }
 
-  .main-container {
+
+
+  /**
+   * #MAIN
+   */
+
+  main {
     margin-top: 60px;
     margin-bottom: 100px;
   }
+
+
+
+  /**
+   * #SIDEBAR
+   */
 
   .sidebar {
     max-height: 180px;
@@ -1772,7 +1341,7 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .avatar-box img { width: 120px; }
 
-  .info-content .name { margin-bottom: 8px; }
+  .info-content .name { margin-bottom: 15px; }
 
   .info-content .title { padding: 5px 18px; }
 
@@ -1789,14 +1358,20 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .info_more-btn ion-icon { display: none; }
 
-  .separator { margin: 18px 0; }
+  .separator { margin: 32px 0; }
 
-  .contacts-list { gap: 13px; }
+  .contacts-list { gap: 20px; }
 
   .contact-info {
     max-width: calc(100% - 64px);
     width: calc(100% - 64px);
   }
+
+
+
+  /**
+   * #NAVBAR
+   */
 
   .navbar { border-radius: 20px 20px 0 0; }
 
@@ -1804,11 +1379,18 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .navbar-link { --fs-8: 14px; }
 
+
+
+  /**
+   * #ABOUT
+   */
+
   .about .article-title { margin-bottom: 20px; }
 
   .about-text { margin-bottom: 40px; }
 
   /* service */
+
   .service-item {
     display: flex;
     justify-content: flex-start;
@@ -1825,6 +1407,7 @@ textarea.form-input::-webkit-resizer { display: none; }
   .service-content-box { text-align: left; }
 
   /* testimonials */
+
   .testimonials-title { margin-bottom: 25px; }
 
   .testimonials-list {
@@ -1852,14 +1435,12 @@ textarea.form-input::-webkit-resizer { display: none; }
   }
 
   .testimonials-text {
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
     line-clamp: 2;
-    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
   }
 
   /* testimonials modal */
+
   .modal-container { padding: 20px; }
 
   .testimonials-modal {
@@ -1891,6 +1472,7 @@ textarea.form-input::-webkit-resizer { display: none; }
   }
 
   /* clients */
+
   .clients-list {
     gap: 50px;
     margin: 0 -30px;
@@ -1900,14 +1482,12 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .clients-item { min-width: calc(33.33% - 35px); }
 
-  /* tech stack */
-  .skills-icon-list {
-    gap: 30px;
-    margin: 0 -30px;
-    padding: 30px;
-  }
 
-  /* resume */
+
+  /**
+   * #RESUME
+   */
+
   .timeline-list { margin-left: 65px; }
 
   .timeline-item:not(:last-child)::before { left: -40px; }
@@ -1920,20 +1500,24 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .skills-item:not(:last-child) { margin-bottom: 25px; }
 
-  /* portfolio + blog */
-  .project-img {
-    border-radius: 12px;
-    height: 175px;
-  }
 
-  .blog-banner-box { border-radius: 16px; }
 
+  /**
+   * #PORTFOLIO, BLOG
+   */
+
+  .project-img, .blog-banner-box { border-radius: 16px; }
 
   .blog-posts-list { gap: 30px; }
 
   .blog-content { padding: 25px; }
 
-  /* contact */
+
+
+  /**
+   * #CONTACT
+   */
+
   .mapbox {
     height: 380px;
     border-radius: 18px;
@@ -1957,23 +1541,51 @@ textarea.form-input::-webkit-resizer { display: none; }
 
 }
 
+
+
+
+
 /**
- * 768px+
+ * responsive larger than 768px screen
  */
+
 @media (min-width: 768px) {
+
+  /**
+   * REUSED STYLE
+   */
 
   .sidebar, article { width: 700px; }
 
   .has-scrollbar::-webkit-scrollbar-button { width: 100px; }
+
+
+
+  /**
+   * SIDEBAR
+   */
 
   .contacts-list {
     grid-template-columns: 1fr 1fr;
     gap: 30px 15px;
   }
 
+
+
+  /**
+   * NAVBAR
+   */
+
   .navbar-link { --fs-8: 15px; }
 
+
+
+  /**
+   * ABOUT
+   */
+
   /* testimonials modal */
+
   .testimonials-modal {
     gap: 35px;
     max-width: 680px;
@@ -1981,7 +1593,12 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .modal-avatar-box img { width: 80px; }
 
-  /* portfolio */
+
+
+  /**
+   * PORTFOLIO
+   */
+
   .article-title { padding-bottom: 20px; }
 
   .filter-select-box { display: none; }
@@ -2005,101 +1622,82 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .filter-item button.active { color: var(--orange-yellow-crayola); }
 
+  /* portfolio and blog grid */
+
   .project-list, .blog-posts-list { grid-template-columns: 1fr 1fr; }
 
-  /* contact */
+
+
+  /**
+   * CONTACT
+   */
+
   .input-wrapper { grid-template-columns: 1fr 1fr; }
 
   .form-btn {
     width: max-content;
     margin-left: auto;
   }
-
+  
 }
 
+
+
+
+
 /**
- * 1024px+
+ * responsive larger than 1024px screen
  */
+
 @media (min-width: 1024px) {
 
+  /**
+   * CUSTOM PROPERTY
+   */
+
   :root {
+
+    /**
+    * shadow
+    */
+
     --shadow-1: -4px 8px 24px hsla(0, 0%, 0%, 0.125);
     --shadow-2: 0 16px 30px hsla(0, 0%, 0%, 0.125);
     --shadow-3: 0 16px 40px hsla(0, 0%, 0%, 0.125);
+
   }
 
-  /* Side-by-side layout from 1024px — sidebar always visible */
-  .sidebar, article { width: auto; }
 
-  article { min-height: 100%; }
 
-  .main-container {
-    max-width: 1110px;
-    margin-inline: auto;
-    margin-bottom: 60px;
-    display: flex;
-    justify-content: center;
-    align-items: stretch;
-    gap: 20px;
+  /**
+   * REUSED STYLE
+   */
+
+  .sidebar, article {
+    width: 950px;
+    box-shadow: var(--shadow-5);
   }
+
+
+
+  /**
+   * MAIN 
+   */
+
+  main { margin-bottom: 60px; }
 
   .main-content {
-    min-width: 73%;
-    width: 73%;
-    margin: 0;
     position: relative;
+    width: max-content;
+    margin: auto;
   }
 
-  /* Sidebar: always visible, sticky while main content scrolls */
-  .sidebar {
-    position: sticky;
-    top: 15px;
-    max-height: max-content;
-    height: max-content;
-    margin-bottom: 0;
-    padding-top: 30px;
-    z-index: 1;
-    overflow: visible;
-  }
-
-  /* Show all contacts permanently at desktop */
-  .sidebar-info { flex-direction: column; }
-
-  .avatar-box { border-radius: 20px; }
-
-  .avatar-box img { width: 110px; }
-
-  .info-content .name {
-    white-space: nowrap;
-    text-align: center;
-    font-size: var(--fs-3);
-  }
-
-  .info-content .title { margin: auto; }
-
-  .info_more-btn { display: none; }
-
-  .sidebar-info_more {
-    opacity: 1;
-    visibility: visible;
-  }
-
-  .contacts-list { grid-template-columns: 1fr; }
 
 
-  .contact-info :is(.contact-link, time, address) {
-    --fs-7: 13px;
-    font-weight: var(--fw-300);
-  }
+  /**
+   * NAVBAR
+   */
 
-  .separator:last-of-type {
-    margin: 10px 0;
-    opacity: 0;
-  }
-
-  .social-list { justify-content: center; }
-
-  /* Navbar repositioned into article header */
   .navbar {
     position: absolute;
     bottom: auto;
@@ -2113,49 +1711,64 @@ textarea.form-input::-webkit-resizer { display: none; }
   }
 
   .navbar-list {
-    gap: 25px;
-    padding: 0 15px;
+    gap: 30px;
+    padding: 0 20px;
   }
 
   .navbar-link { font-weight: var(--fw-500); }
 
+
+
+  /**
+   * ABOUT
+   */
+
   /* service */
+
   .service-list {
     grid-template-columns: 1fr 1fr;
     gap: 20px 25px;
   }
 
   /* testimonials */
+
   .testimonials-item { min-width: calc(50% - 15px); }
 
   /* clients */
+
   .clients-item { min-width: calc(25% - 38px); }
 
-  /* tech stack: always stays single-row carousel, just bigger icons at desktop */
-  .skills-icon-list {
-    margin: 0 0;
-    padding: 15px 0;
-    padding-bottom: 20px;
-    gap: 14px;
-  }
 
-  .skill-icon-item {
-    width: 85px;
-    height: 88px;
-  }
 
-  /* portfolio — keep at 2 columns max, no 3-column override */
-  .project-list { grid-template-columns: 1fr 1fr; }
+  /**
+   * PORTFOLIO
+   */
 
-  /* blog */
+  .project-list { grid-template-columns: repeat(3, 1fr); }
+
+
+
+  /**
+   * BLOG
+   */
+
   .blog-banner-box { height: 230px; }
 
 }
 
+
+
+
+
 /**
- * 1250px+ — wider, roomier layout
+ * responsive larger than 1250px screen
  */
+
 @media (min-width: 1250px) {
+
+  /**
+   * RESET
+   */
 
   body::-webkit-scrollbar { width: 20px; }
 
@@ -2173,17 +1786,96 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   body::-webkit-scrollbar-button { height: 60px; }
 
-  .main-container {
+
+
+  /**
+   * REUSED STYLE
+   */
+
+  .sidebar, article { width: auto; }
+
+  article { min-height: 100%; }
+
+
+
+  /**
+   * MAIN
+   */
+
+  main {
     max-width: 1200px;
+    margin-inline: auto;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
     gap: 25px;
   }
 
   .main-content {
     min-width: 75%;
     width: 75%;
+    margin: 0;
   }
 
-  .avatar-box img { width: 130px; }
+
+
+  /**
+   * SIDEBAR
+   */
+
+  .sidebar {
+    position: sticky;
+    top: 60px;
+    max-height: max-content;
+    height: 100%;
+    margin-bottom: 0;
+    padding-top: 60px;
+    z-index: 1;
+  }
+
+  .sidebar-info { flex-direction: column; }
+
+  .avatar-box img { width: 150px; }
+
+  .info-content .name {
+    white-space: nowrap;
+    text-align: center;
+  }
+
+  .info-content .title { margin: auto; }
+
+  .info_more-btn { display: none; }
+
+  .sidebar-info_more {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .contacts-list { grid-template-columns: 1fr; }
+
+  .contact-info :is(.contact-link) {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .contact-info :is(.contact-link, time, address) {
+    --fs-7: 14px;
+    font-weight: var(--fw-300);
+  }
+
+  .separator:last-of-type {
+    margin: 15px 0;
+    opacity: 0;
+  }
+
+  .social-list { justify-content: center; }
+
+
+
+  /**
+	 * RESUME
+	 */
 
   .timeline-text { max-width: 700px; }
 

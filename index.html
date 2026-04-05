@@ -1,108 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<!--
+  ============================================================
+  BRUCE BOGE — Personal Portfolio
+  File: index.html
+
+  STRUCTURE OVERVIEW
+  ──────────────────
+  <head>         — Meta, fonts, stylesheet, analytics, Ionicons
+  <body>
+    .main-container
+    ├── <aside.sidebar>      — Profile card (sticky on desktop)
+    └── .main-content
+        ├── <nav.navbar>     — Tab navigation
+        └── Articles (one active at a time):
+            ├── article[about]     — Bio, Services, Testimonials, Clients, Tech Stack
+            ├── article[resume]    — Education, Experience, Certifications, Skills
+            ├── article[portfolio] — Filterable project cards
+            ├── article[blog]      — Dynamically loaded posts (blog.js)
+            ├── article[contact]   — Map + contact form
+            └── article[github]    — Live GitHub repos (github_projects.js)
+
+  JAVASCRIPT FILES (loaded at end of <body>)
+  ──────────────────────────────────────────
+    script.js           — Core interactions (sidebar, nav, filter, modal, form)
+    github_projects.js  — Fetches and renders GitHub repos
+    blog.js             — Fetches and renders blog posts
+
+  ICON LIBRARY: Ionicons (loaded via CDN, two script tags for ESM + fallback)
+  FONT: Poppins (Google Fonts — 300, 400, 500, 600, 700 weights)
+
+  HOW TO ADD A NEW PAGE TAB:
+    1. Add <li><button data-nav-link data-target="PAGENAME"> in .navbar-list
+    2. Add <article class="PAGENAME" data-page="PAGENAME"> in .main-content
+    3. CSS makes it visible only when .active class is present
+  ============================================================
+-->
+
 <head>
+    <!-- ── Character encoding and responsive viewport ── -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ── SEO: Page title shown in browser tab and search results ── -->
     <title>BRUCE BOGE - Portfolio</title>
 
+    <!-- ── Main stylesheet ── -->
     <link rel="stylesheet" href="style.css">
 
+    <!--
+      Google Fonts — Poppins
+      Weights: 300 (light), 400 (regular), 500 (medium), 600 (semibold), 700 (bold)
+      Used globally across the portfolio. Change the URL to swap fonts.
+    -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
 
-    <!-- Ionicons for icons -->
+    <!--
+      Ionicons v7 — Icon library
+      Loaded as ESM module with a nomodule fallback for older browsers.
+      Usage: <ion-icon name="icon-name"></ion-icon>
+      Browse icons: https://ionic.io/ionicons
+    -->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
-    <!-- Google Analytics (Placeholder) -->
-    <!-- Replace G-XXXXXXXXXX with your actual Measurement ID -->
+    <!--
+      Google Analytics — Web traffic tracking
+      TODO: Replace G-XXXXXXXXXX with your real Measurement ID from
+            https://analytics.google.com → Admin → Data Streams
+    -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-XXXXXXXXXX');
     </script>
 </head>
 
 <body>
 
-    <!-- MAIN CONTAINER -->
+    <!-- ════════════════════════════════════════════════════
+         MAIN CONTAINER
+         Wraps both the sidebar and the main content panel.
+         At 1024px+ this becomes a flex row (side-by-side).
+         ════════════════════════════════════════════════════ -->
     <div class="main-container">
 
-        <!-- SIDEBAR CARD -->
+        <!-- ════════════════════════════════════════════════
+             SIDEBAR  (aside.sidebar)
+             ────────────────────────
+             On mobile: collapses to name + title only.
+             "Show Contacts" button toggles .active to reveal contacts.
+
+             On desktop (1024px+): always fully visible, sticky.
+             The .info_more-btn is hidden via CSS at that breakpoint.
+
+             HOW TO UPDATE PERSONAL INFO:
+             - Avatar: replace images/avatar.webp
+             - Name: change the <h1 class="name"> text
+             - Title: change the <p class="title"> text
+             - Contact links: update href values in .contacts-list
+             - Social links: update href values in .social-list
+             - To add/remove a contact row: copy/remove a <li class="contact-item">
+             ════════════════════════════════════════════════ -->
         <aside class="sidebar" data-sidebar>
 
+            <!-- ── Always-visible header: avatar + name + toggle button ── -->
             <div class="sidebar-info">
 
+                <!-- Profile photo — update src to change avatar image -->
                 <figure class="avatar-box">
                     <img src="images/avatar.webp" alt="BRUCE" width="140">
                 </figure>
 
+                <!-- Name and role label -->
                 <div class="info-content">
                     <h1 class="name" title="Your Name">BRUCE BOGE</h1>
                     <p class="title">Developer</p>
                 </div>
 
-                <button class="info-more-btn" data-sidebar-btn>
+                <!--
+                  "Show Contacts" button — mobile only.
+                  Clicking this toggles .active on <aside.sidebar>
+                  which expands max-height via CSS to reveal contacts.
+                  Hidden at 1024px+ via CSS (contacts always visible there).
+                -->
+                <button class="info_more-btn" data-sidebar-btn>
                     <span>Show Contacts</span>
                     <ion-icon name="chevron-down"></ion-icon>
                 </button>
 
             </div>
 
-            <div class="sidebar-info-more">
+            <!-- ── Expandable contact details (hidden on mobile until toggled) ── -->
+            <div class="sidebar-info_more">
 
+                <!-- Visual divider line -->
                 <div class="separator"></div>
 
+                <!-- Contact information list -->
                 <ul class="contacts-list">
 
+                    <!-- Email — update href and display text -->
                     <li class="contact-item">
                         <div class="icon-box">
                             <ion-icon name="mail-outline"></ion-icon>
                         </div>
                         <div class="contact-info">
-                            <p class="contact-title">EMAIL</p>
+                            <p class="contact-title">Email</p>
                             <a href="mailto:bogebruce6@gmail.com" class="contact-link">bogebruce6@gmail.com</a>
                         </div>
                     </li>
 
+                    <!-- Phone — update href (tel:) and display text -->
                     <li class="contact-item">
                         <div class="icon-box">
                             <ion-icon name="phone-portrait-outline"></ion-icon>
                         </div>
                         <div class="contact-info">
-                            <p class="contact-title">PHONE</p>
+                            <p class="contact-title">Phone</p>
                             <a href="tel:+254746073786" class="contact-link">+254746073786</a>
                         </div>
                     </li>
 
+                    <!-- Company — update href and company name -->
                     <li class="contact-item">
                         <div class="icon-box">
                             <ion-icon name="business-outline"></ion-icon>
                         </div>
                         <div class="contact-info">
-                            <p class="contact-title">COMPANY</p>
+                            <p class="contact-title">Company</p>
                             <a href="https://bruceboge.github.io/neca-website/" class="contact-link" target="_blank">NECA</a>
                         </div>
                     </li>
 
+                    <!-- Location — update <address> text as needed -->
                     <li class="contact-item">
                         <div class="icon-box">
                             <ion-icon name="location-outline"></ion-icon>
                         </div>
                         <div class="contact-info">
-                            <p class="contact-title">LOCATION</p>
+                            <p class="contact-title">Location</p>
                             <address>Nairobi, Kenya</address>
                         </div>
                     </li>
 
                 </ul>
 
+                <!-- Visual divider line -->
                 <div class="separator"></div>
 
+                <!--
+                  Social media links
+                  HOW TO ADD: copy a <li class="social-item"> and update href + icon name
+                  HOW TO REMOVE: delete the <li class="social-item"> block
+                  Icons: logo-linkedin, logo-github, logo-instagram, logo-twitter, logo-youtube, etc.
+                -->
                 <ul class="social-list">
                     <li class="social-item">
                         <a href="https://www.linkedin.com/in/bruceboge" class="social-link" target="_blank">
@@ -129,11 +225,26 @@
             </div>
 
         </aside>
+        <!-- /sidebar -->
 
-        <!-- MAIN CONTENT CARD -->
+        <!-- ════════════════════════════════════════════════
+             MAIN CONTENT PANEL
+             Contains the navbar + all page articles.
+             Only one article is .active at a time (JS-controlled).
+             ════════════════════════════════════════════════ -->
         <div class="main-content">
 
-            <!-- NAVBAR -->
+            <!-- ════════════════════════════════════════════
+                 NAVBAR
+                 ────────
+                 On mobile: fixed to the bottom of the screen.
+                 On desktop (1024px+): repositioned to the top-right
+                 of the main content card via CSS.
+
+                 Each button:
+                   data-nav-link  — marks it as navigation
+                   data-target    — must match an article's data-page value
+                 ════════════════════════════════════════════ -->
             <nav class="navbar">
                 <ul class="navbar-list">
                     <li class="navbar-item">
@@ -151,42 +262,56 @@
                     <li class="navbar-item">
                         <button class="navbar-link" data-nav-link data-target="contact">Contact</button>
                     </li>
-
                     <li class="navbar-item">
                         <button class="navbar-link" data-nav-link data-target="github">GitHub</button>
                     </li>
                 </ul>
             </nav>
 
-            <!-- ABOUT -->
+
+            <!-- ════════════════════════════════════════════
+                 PAGE: ABOUT
+                 ────────────
+                 Contains: Bio text, Services, Testimonials (with modal),
+                 Clients, and Tech Stack carousel.
+
+                 The `active` class on <article> is required for
+                 the About page to show on initial load.
+                 ════════════════════════════════════════════ -->
             <article class="about active" data-page="about">
 
                 <header>
                     <h2 class="h2 article-title">About Me</h2>
                 </header>
 
+                <!-- ── Bio / Introduction text ── -->
                 <section class="about-text">
                     <p>
-                        A passionate Developer specializing in n8n automation, Web Development, and System Design. 
+                        A passionate Developer specializing in n8n automation, Web Development, and System Design.
                         With a strong background in building scalable web applications and efficient automation workflows,
-                        I prioritize creating seamless user experiences and robust backend systems. 
-                        My expertise lies in integrating complex APIs, optimizing performance, and designing 
+                        I prioritize creating seamless user experiences and robust backend systems.
+                        My expertise lies in integrating complex APIs, optimizing performance, and designing
                         architectures that stand the test of time.
                     </p>
                     <p>
                         If you're seeking a skilled developer to breathe life into your project and exceed your
-                        expectations, I am here
-                        to collaborate and create magic together. Reach out, and let's transform your vision into a
-                        reality!
+                        expectations, I am here to collaborate and create magic together.
+                        Reach out, and let's transform your vision into a reality!
                     </p>
                 </section>
 
-                <!-- WHAT I'M DOING -->
+                <!-- ── SERVICES / "What I'm Doing" section ──
+                     HOW TO ADD A SERVICE:
+                       Copy a <li class="service-item"> block.
+                       Change the ion-icon name, title, and description text.
+                     HOW TO REMOVE: Delete the <li class="service-item"> block.
+                -->
                 <section class="service">
                     <h3 class="h3 service-title">What I'm Doing</h3>
 
                     <ul class="service-list">
 
+                        <!-- Service: n8n Automation -->
                         <li class="service-item">
                             <div class="service-icon-box">
                                 <ion-icon name="git-network-outline"></ion-icon>
@@ -199,6 +324,7 @@
                             </div>
                         </li>
 
+                        <!-- Service: Web Development -->
                         <li class="service-item">
                             <div class="service-icon-box">
                                 <ion-icon name="desktop-outline"></ion-icon>
@@ -211,6 +337,7 @@
                             </div>
                         </li>
 
+                        <!-- Service: System Design -->
                         <li class="service-item">
                             <div class="service-icon-box">
                                 <ion-icon name="layers-outline"></ion-icon>
@@ -223,6 +350,7 @@
                             </div>
                         </li>
 
+                        <!-- Service: Backend Development -->
                         <li class="service-item">
                             <div class="service-icon-box">
                                 <ion-icon name="server-outline"></ion-icon>
@@ -230,8 +358,7 @@
                             <div class="service-content-box">
                                 <h4 class="h4 service-item-title">Backend Development</h4>
                                 <p class="service-item-text">
-                                    High-performance backend services designed for scalability and seamless user
-                                    experience.
+                                    High-performance backend services designed for scalability and seamless user experience.
                                 </p>
                             </div>
                         </li>
@@ -240,54 +367,314 @@
 
                 </section>
 
-                <!-- SKILLS -->
+
+                <!-- ── TESTIMONIALS section ──
+                     Horizontally scrollable carousel of client reviews.
+                     Clicking a card opens the full testimonial in a modal popup.
+
+                     HOW TO ADD A TESTIMONIAL:
+                       1. Copy a <li class="testimonials-item"> block.
+                       2. Change ?seed=Name in the DiceBear URL to generate a unique avatar.
+                       3. Update the name (data-testimonials-title) and review text.
+
+                     data-testimonials-item  — makes the card clickable (targets JS)
+                     data-testimonials-avatar — JS reads src/alt to populate modal image
+                     data-testimonials-title  — JS reads text to populate modal title
+                     data-testimonials-text   — JS reads innerHTML to populate modal body
+                -->
+                <section class="testimonials">
+
+                    <h3 class="h3 testimonials-title">Testimonials</h3>
+
+                    <ul class="testimonials-list has-scrollbar">
+
+                        <!-- Testimonial: Alex M. -->
+                        <li class="testimonials-item">
+                            <div class="content-card" data-testimonials-item>
+                                <figure class="testimonials-avatar-box">
+                                    <!-- DiceBear avatar — change ?seed= value for a different avatar style -->
+                                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Alex" alt="Alex M." width="60" data-testimonials-avatar>
+                                </figure>
+                                <h4 class="h4 testimonials-item-title" data-testimonials-title>Alex M.</h4>
+                                <div class="testimonials-text" data-testimonials-text>
+                                    <p>Bruce built our n8n automation pipeline that saved us 20+ hours per week. His attention to detail and understanding of business workflows is exceptional. Truly a top-tier developer.</p>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Testimonial: Sarah K. -->
+                        <li class="testimonials-item">
+                            <div class="content-card" data-testimonials-item>
+                                <figure class="testimonials-avatar-box">
+                                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah" alt="Sarah K." width="60" data-testimonials-avatar>
+                                </figure>
+                                <h4 class="h4 testimonials-item-title" data-testimonials-title>Sarah K.</h4>
+                                <div class="testimonials-text" data-testimonials-text>
+                                    <p>Working with Bruce on our web application was a fantastic experience. He delivered a scalable, clean codebase on time and exceeded our expectations. We'll definitely work with him again.</p>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Testimonial: James O. -->
+                        <li class="testimonials-item">
+                            <div class="content-card" data-testimonials-item>
+                                <figure class="testimonials-avatar-box">
+                                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=James" alt="James O." width="60" data-testimonials-avatar>
+                                </figure>
+                                <h4 class="h4 testimonials-item-title" data-testimonials-title>James O.</h4>
+                                <div class="testimonials-text" data-testimonials-text>
+                                    <p>Bruce redesigned our entire system architecture and the results speak for themselves — 3x faster response times and zero downtime. His expertise in system design is remarkable.</p>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Testimonial: Amina W. -->
+                        <li class="testimonials-item">
+                            <div class="content-card" data-testimonials-item>
+                                <figure class="testimonials-avatar-box">
+                                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Amina" alt="Amina W." width="60" data-testimonials-avatar>
+                                </figure>
+                                <h4 class="h4 testimonials-item-title" data-testimonials-title>Amina W.</h4>
+                                <div class="testimonials-text" data-testimonials-text>
+                                    <p>Bruce integrated our CRM with several third-party APIs and automated our reporting. He's highly professional, communicates clearly, and the quality of his work is outstanding.</p>
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </section>
+
+
+                <!-- ── TESTIMONIALS MODAL ──
+                     This is a static shell — JS populates it dynamically
+                     when any testimonial card is clicked.
+                     Do NOT edit the content here; it is overwritten by JS each
+                     time the modal opens. Edit the source data in the cards above.
+
+                     data-modal-container — JS toggles .active to show/hide
+                     data-overlay         — Dark backdrop; click to close
+                     data-modal-close-btn — × button; click to close
+                     data-modal-img       — JS writes the avatar src/alt here
+                     data-modal-title     — JS writes the reviewer name here
+                     data-modal-text      — JS writes the review text here
+                -->
+                <div class="modal-container" data-modal-container>
+
+                    <div class="overlay" data-overlay></div>
+
+                    <section class="testimonials-modal">
+
+                        <!-- Close button (top-right corner of modal) -->
+                        <button class="modal-close-btn" data-modal-close-btn>
+                            <ion-icon name="close-outline"></ion-icon>
+                        </button>
+
+                        <!-- Avatar + quote icon column -->
+                        <div class="modal-img-wrapper">
+                            <figure class="modal-avatar-box">
+                                <!-- src/alt populated by JS — do not hardcode useful content here -->
+                                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Alex" alt="" width="80" data-modal-img>
+                            </figure>
+                            <!-- Decorative quote icon (visible at 580px+) -->
+                            <img src="https://cdn.jsdelivr.net/gh/codewithsadee/vcard-personal-portfolio@main/assets/images/icon-quote.svg" alt="quote icon">
+                        </div>
+
+                        <!-- Modal text content — all filled dynamically by JS -->
+                        <div class="modal-content">
+                            <h4 class="h3 modal-title" data-modal-title></h4>
+                            <time datetime="2024-01-01">2024</time>
+                            <div data-modal-text>
+                                <p></p>
+                            </div>
+                        </div>
+
+                    </section>
+
+                </div>
+                <!-- /testimonials modal -->
+
+
+                <!-- ── CLIENTS section ──
+                     Horizontally scrollable carousel of client cards.
+                     Each card uses a CSS custom property --client-color
+                     to set that client's unique accent colour.
+
+                     HOW TO ADD A CLIENT:
+                       Copy a <li class="clients-item"> block.
+                       Change: href, --client-color, ion-icon name,
+                               .client-name text, .client-desc text.
+
+                     HOW TO CHANGE A CLIENT'S COLOR:
+                       Update the --client-color HSL value in the style="" attribute.
+                -->
+                <section class="clients">
+
+                    <h3 class="h3 clients-title">Clients</h3>
+
+                    <ul class="clients-list has-scrollbar">
+
+                        <!-- Client: NECA — blue accent -->
+                        <li class="clients-item">
+                            <a href="https://bruceboge.github.io/neca-website/" target="_blank"
+                               class="client-card" style="--client-color: hsl(210, 100%, 56%);">
+                                <div class="client-icon">
+                                    <ion-icon name="business-outline"></ion-icon>
+                                </div>
+                                <h4 class="client-name">NECA</h4>
+                                <p class="client-desc">Web &amp; Automation</p>
+                            </a>
+                        </li>
+
+                        <!-- Client: ClubVote — orange accent -->
+                        <li class="clients-item">
+                            <a href="#" class="client-card" style="--client-color: hsl(20, 100%, 60%);">
+                                <div class="client-icon">
+                                    <ion-icon name="checkmark-circle-outline"></ion-icon>
+                                </div>
+                                <h4 class="client-name">ClubVote</h4>
+                                <p class="client-desc">Voting Platform</p>
+                            </a>
+                        </li>
+
+                        <!-- Client: ClubFlow — purple accent -->
+                        <li class="clients-item">
+                            <a href="#" class="client-card" style="--client-color: hsl(250, 100%, 69%);">
+                                <div class="client-icon">
+                                    <ion-icon name="layers-outline"></ion-icon>
+                                </div>
+                                <h4 class="client-name">ClubFlow</h4>
+                                <p class="client-desc">Club Management</p>
+                            </a>
+                        </li>
+
+                        <!-- Client: n8n — rose/pink accent -->
+                        <li class="clients-item">
+                            <a href="#" class="client-card" style="--client-color: hsl(345, 80%, 60%);">
+                                <div class="client-icon">
+                                    <ion-icon name="git-network-outline"></ion-icon>
+                                </div>
+                                <h4 class="client-name">n8n</h4>
+                                <p class="client-desc">Workflow Automation</p>
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </section>
+
+
+                <!-- ── TECH STACK carousel ──
+                     Single horizontal scrolling row of technology icons.
+                     flex-wrap: nowrap is enforced in CSS — it never wraps.
+                     At 1024px+ icons grow slightly but remain single-row.
+
+                     HOW TO ADD A TECHNOLOGY:
+                       Copy a <li class="skill-icon-item"> block.
+                       Update: img src (Devicons CDN or local), alt, title, and label text.
+
+                     HOW TO REMOVE: Delete the <li class="skill-icon-item"> block.
+
+                     Icon source: https://cdn.jsdelivr.net/gh/devicons/devicon/icons/
+                     Format: [name]/[name]-original.svg  (e.g. nodejs/nodejs-original.svg)
+                -->
                 <section class="skills-section">
+
+                    <!-- Separator line above tech stack (matches clients section visual rhythm) -->
+                    <div class="separator"></div>
+
                     <h3 class="h3 skills-title">My Tech Stack</h3>
 
-                    <ul class="skills-icon-list">
-                    <li class="skill-icon-item">
+                    <ul class="skills-icon-list has-scrollbar">
+
+                        <!-- n8n — local image (no Devicons entry) -->
+                        <li class="skill-icon-item">
                             <img src="images/n8n logo.png" alt="n8n" title="n8n">
+                            <span class="skill-icon-label">n8n</span>
                         </li>
+
+                        <!-- React -->
                         <li class="skill-icon-item">
                             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" title="React">
+                            <span class="skill-icon-label">React</span>
                         </li>
+
+                        <!-- Python -->
                         <li class="skill-icon-item">
                             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" title="Python">
+                            <span class="skill-icon-label">Python</span>
                         </li>
+
+                        <!-- HTML5 -->
                         <li class="skill-icon-item">
                             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" title="HTML5">
+                            <span class="skill-icon-label">HTML5</span>
                         </li>
+
+                        <!-- CSS3 -->
                         <li class="skill-icon-item">
                             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" title="CSS3">
+                            <span class="skill-icon-label">CSS3</span>
                         </li>
+
+                        <!-- JavaScript -->
                         <li class="skill-icon-item">
                             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" title="JavaScript">
+                            <span class="skill-icon-label">JavaScript</span>
                         </li>
+
+                        <!-- Docker -->
                         <li class="skill-icon-item">
                             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" title="Docker">
+                            <span class="skill-icon-label">Docker</span>
                         </li>
+
+                        <!-- Firebase -->
                         <li class="skill-icon-item">
                             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="Firebase" title="Firebase">
+                            <span class="skill-icon-label">Firebase</span>
                         </li>
-                        <!--<li class="skill-icon-item">
-                            <img src="images/antigravity.svg" alt="Antigravity" title="Antigravity">
-                        </li> -->
+
+                        <!-- Microsoft Azure -->
                         <li class="skill-icon-item">
                             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" alt="Azure" title="Azure">
+                            <span class="skill-icon-label">Azure</span>
                         </li>
+
                     </ul>
 
                 </section>
 
             </article>
+            <!-- /about -->
 
-            <!-- RESUME -->
+
+            <!-- ════════════════════════════════════════════
+                 PAGE: RESUME
+                 ─────────────
+                 Contains: Education, Experience, Certifications,
+                 and Skill progress bars.
+
+                 HOW TO ADD A TIMELINE ITEM:
+                   Copy a <li class="timeline-item"> block.
+                   Update: title, date span, and description.
+                   Items are displayed with a vertical line + dot indicator via CSS pseudo-elements.
+
+                 HOW TO UPDATE SKILL BARS:
+                   Change the style="width: XX%" on .skill-progress-fill
+                   (also update the <data value="XX"> and visible text to match).
+                   The width animates on page load via script.js (animateSkillBars).
+
+                 COMMENTED-OUT ITEMS: Items wrapped in comments are future placeholders
+                 (e.g. Master's degree). Uncomment when applicable.
+                 ════════════════════════════════════════════ -->
             <article class="resume" data-page="resume">
 
                 <header>
                     <h2 class="h2 article-title">Resume</h2>
                 </header>
 
+                <!-- ── Education timeline ── -->
                 <section class="timeline">
 
                     <div class="title-wrapper">
@@ -299,14 +686,14 @@
 
                     <ol class="timeline-list">
 
+                        <!-- FUTURE: Uncomment when pursuing postgraduate studies -->
                         <!--<li class="timeline-item">
                             <h4 class="h4 timeline-item-title">Master of Science in Telecom Engineering</h4>
                             <span>2027 — 2029</span>
                             <p class="timeline-text">
-                                University Name - Advanced studies in Telecom engineering, algorithms, and system
-                                design.
+                                University Name - Advanced studies in Telecom engineering, algorithms, and system design.
                             </p>
-                        </li> -->
+                        </li>-->
 
                         <li class="timeline-item">
                             <h4 class="h4 timeline-item-title">Bachelor of Science in Telecommunications and Information Engineering</h4>
@@ -320,6 +707,7 @@
 
                 </section>
 
+                <!-- ── Work Experience timeline ── -->
                 <section class="timeline">
 
                     <div class="title-wrapper">
@@ -351,8 +739,7 @@
                             <h4 class="h4 timeline-item-title">(Junior Developer) Systems Design</h4>
                             <span>2024 — Present</span>
                             <p class="timeline-text">
-                                NECA - Started career Designing and building features in production
-                                Systems.
+                                NECA - Started career Designing and building features in production Systems.
                             </p>
                         </li>
 
@@ -360,6 +747,7 @@
 
                 </section>
 
+                <!-- ── Certifications timeline ── -->
                 <section class="timeline">
 
                     <div class="title-wrapper">
@@ -380,7 +768,7 @@
                         </li>
 
                         <li class="timeline-item">
-                            <h4 class="h4 timeline-item-title">Advanced React & Modern JavaScript</h4>
+                            <h4 class="h4 timeline-item-title">Advanced React &amp; Modern JavaScript</h4>
                             <span>2023</span>
                             <p class="timeline-text">
                                 Mastery of modern React patterns, hooks, and state management for scalable applications.
@@ -391,6 +779,14 @@
 
                 </section>
 
+                <!-- ── Skill progress bars ──
+                     HOW TO UPDATE:
+                       - Change the <h5> label text
+                       - Change the <data value="XX">XX%</data> text
+                       - Change style="width: XX%" on .skill-progress-fill
+                       All three must match for visual consistency.
+                     JS animates these bars when this tab becomes active.
+                -->
                 <section class="skill">
 
                     <h3 class="h3 skills-title">My Skills</h3>
@@ -430,7 +826,7 @@
                         <li class="skills-item">
                             <div class="title-wrapper">
                                 <h5 class="h5">Backend Development</h5>
-                                <data value="75">40%</data>
+                                <data value="40">40%</data>
                             </div>
                             <div class="skill-progress-bg">
                                 <div class="skill-progress-fill" style="width: 40%"></div>
@@ -442,8 +838,28 @@
                 </section>
 
             </article>
+            <!-- /resume -->
 
-            <!-- PORTFOLIO -->
+
+            <!-- ════════════════════════════════════════════
+                 PAGE: PORTFOLIO
+                 ────────────────
+                 Filterable 2-column grid of project cards.
+
+                 FILTER SYSTEM:
+                   - Desktop: .filter-list buttons (visible at 768px+)
+                   - Mobile: .filter-select-box dropdown (hidden at 768px+)
+                   Both are hidden/shown via CSS media queries.
+
+                 HOW TO ADD A PROJECT:
+                   1. Add the category to both filter lists if it's new.
+                   2. Copy a <li class="project-item active"> block.
+                   3. Set data-category to match the filter button's data-category.
+                   4. Update: href, image src/alt, project title, category label.
+
+                 HOW TO LINK A PROJECT:
+                   Update href="#" to the live URL or repo URL.
+                 ════════════════════════════════════════════ -->
             <article class="portfolio" data-page="portfolio">
 
                 <header>
@@ -452,6 +868,7 @@
 
                 <section class="projects">
 
+                    <!-- Desktop filter buttons (hidden on mobile via CSS) -->
                     <ul class="filter-list">
                         <li class="filter-item">
                             <button class="active" data-filter-btn data-category="all">All</button>
@@ -467,6 +884,7 @@
                         </li>
                     </ul>
 
+                    <!-- Mobile category dropdown (hidden at 768px+ via CSS) -->
                     <div class="filter-select-box">
                         <button class="filter-select" data-select>
                             <div class="select-value" data-select-value>Select category</div>
@@ -474,6 +892,7 @@
                                 <ion-icon name="chevron-down"></ion-icon>
                             </div>
                         </button>
+                        <!-- Dropdown options — must mirror the desktop filter buttons above -->
                         <ul class="select-list">
                             <li class="select-item">
                                 <button data-select-item data-category="all">All</button>
@@ -490,10 +909,12 @@
                         </ul>
                     </div>
 
+                    <!-- Project grid — 2 columns via CSS (1 on very small screens) -->
                     <ul class="project-list">
 
+                        <!-- Project: ClubVote (Web) -->
                         <li class="project-item active" data-filter-item data-category="web">
-                            <a href="#">
+                            <a href="#"><!-- TODO: add live URL -->
                                 <figure class="project-img">
                                     <div class="project-item-icon-box">
                                         <ion-icon name="eye-outline"></ion-icon>
@@ -504,67 +925,71 @@
                                 <p class="project-category">Web Development</p>
                             </a>
                         </li>
-                        
+
+                        <!-- Project: Airtable → LinkedIn Automation (n8n) -->
                         <li class="project-item active" data-filter-item data-category="n8n">
-                            <a href="#">
+                            <a href="#"><!-- TODO: add live URL -->
                                 <figure class="project-img">
                                     <div class="project-item-icon-box">
                                         <ion-icon name="eye-outline"></ion-icon>
                                     </div>
-                                    <img src="images/n8n-airtable-linkedin.png" alt="Project Alpha" loading="lazy">
+                                    <img src="images/n8n-airtable-linkedin.png" alt="Airtable LinkedIn Automation" loading="lazy">
                                 </figure>
-                                <h3 class="project-title">Airtable to LinkedIn Content Automation Engine </h3>
+                                <h3 class="project-title">Airtable to LinkedIn Content Automation Engine</h3>
                                 <p class="project-category">n8n</p>
                             </a>
                         </li>
 
+                        <!-- Project: Gmail Newsletter → LinkedIn (n8n) -->
                         <li class="project-item active" data-filter-item data-category="n8n">
-                            <a href="#">
+                            <a href="#"><!-- TODO: add live URL -->
                                 <figure class="project-img">
                                     <div class="project-item-icon-box">
                                         <ion-icon name="eye-outline"></ion-icon>
                                     </div>
-                                    <img src="images/Digital Sovereign n8n.png" alt="Project Beta" loading="lazy">
+                                    <img src="images/Digital Sovereign n8n.png" alt="Gmail Newsletter LinkedIn Workflow" loading="lazy">
                                 </figure>
                                 <h3 class="project-title">Gmail Newsletter-LinkedIn workflow</h3>
                                 <p class="project-category">n8n</p>
                             </a>
                         </li>
 
+                        <!-- Project: Instagram Scraper → LinkedIn (n8n) -->
                         <li class="project-item active" data-filter-item data-category="n8n">
-                            <a href="#">
+                            <a href="#"><!-- TODO: add live URL -->
                                 <figure class="project-img">
                                     <div class="project-item-icon-box">
                                         <ion-icon name="eye-outline"></ion-icon>
                                     </div>
-                                    <img src="images/IG-LINKEDIN n8n.png" alt="Project Beta" loading="lazy">
+                                    <img src="images/IG-LINKEDIN n8n.png" alt="Instagram Scraper LinkedIn Workflow" loading="lazy">
                                 </figure>
                                 <h3 class="project-title">Instagram Scraper to LinkedIn posts n8n workflow</h3>
                                 <p class="project-category">n8n</p>
                             </a>
                         </li>
 
-
+                        <!-- Project: ClubFlow (System Design) -->
                         <li class="project-item active" data-filter-item data-category="System Design">
-                            <a href="#">
+                            <a href="#"><!-- TODO: add live URL -->
                                 <figure class="project-img">
                                     <div class="project-item-icon-box">
                                         <ion-icon name="eye-outline"></ion-icon>
                                     </div>
-                                    <img src="images/clubflow.png" alt="Project Gamma" loading="lazy">
+                                    <img src="images/clubflow.png" alt="ClubFlow Club Management System" loading="lazy">
                                 </figure>
                                 <h3 class="project-title">ClubFlow: Club Management</h3>
                                 <p class="project-category">System Design</p>
                             </a>
                         </li>
 
+                        <!-- Project: This Portfolio (Web) -->
                         <li class="project-item active" data-filter-item data-category="web">
-                            <a href="#">
+                            <a href="#"><!-- TODO: add live URL -->
                                 <figure class="project-img">
                                     <div class="project-item-icon-box">
                                         <ion-icon name="eye-outline"></ion-icon>
                                     </div>
-                                    <img src="images/portfolio.png" alt="Project Delta" loading="lazy">
+                                    <img src="images/portfolio.png" alt="Personal Portfolio" loading="lazy">
                                 </figure>
                                 <h3 class="project-title">My Portfolio</h3>
                                 <p class="project-category">Web Development</p>
@@ -576,8 +1001,19 @@
                 </section>
 
             </article>
+            <!-- /portfolio -->
 
-            <!-- BLOG -->
+
+            <!-- ════════════════════════════════════════════
+                 PAGE: BLOG
+                 ───────────
+                 Posts are loaded dynamically by blog.js.
+                 The #blog-posts-container ul is populated at runtime.
+
+                 HOW TO CONFIGURE:
+                   Open blog.js and update the data source (API endpoint,
+                   static JSON array, RSS feed, etc.) to match your setup.
+                 ════════════════════════════════════════════ -->
             <article class="blog" data-page="blog">
 
                 <header>
@@ -585,22 +1021,38 @@
                 </header>
 
                 <section class="blog-posts">
-
+                    <!-- Posts are injected here by blog.js on page load -->
                     <ul class="blog-posts-list" id="blog-posts-container">
                         <!-- Dynamic Blog Posts will be loaded here -->
                     </ul>
-
                 </section>
 
             </article>
+            <!-- /blog -->
 
-            <!-- CONTACT -->
+
+            <!-- ════════════════════════════════════════════
+                 PAGE: CONTACT
+                 ──────────────
+                 Contains an embedded Google Maps iframe and
+                 a contact form with real-time validation.
+
+                 HOW TO UPDATE THE MAP:
+                   Replace the iframe src with a new Google Maps embed URL.
+                   Get it from: maps.google.com → Share → Embed a map → Copy HTML.
+
+                 HOW TO CONNECT THE FORM TO A REAL BACKEND:
+                   In script.js, find the form.addEventListener("submit") block.
+                   Replace the alert() with a fetch() call to your email service.
+                   Options: EmailJS, Formspree, custom Node.js/Express endpoint.
+                 ════════════════════════════════════════════ -->
             <article class="contact" data-page="contact">
 
                 <header>
                     <h2 class="h2 article-title">Contact</h2>
                 </header>
 
+                <!-- Embedded Google Maps — Nairobi, Kenya -->
                 <section class="mapbox" data-mapbox>
                     <figure>
                         <iframe
@@ -609,25 +1061,32 @@
                     </figure>
                 </section>
 
+                <!-- Contact form -->
                 <section class="contact-form">
 
                     <h3 class="h3 form-title">Contact Form</h3>
 
+                    <!--
+                      data-form   — JS listens to this for submit handling
+                      All inputs have data-form-input for real-time validation.
+                      The Send button stays disabled until all fields are valid.
+                    -->
                     <form action="#" class="form" data-form>
 
+                        <!-- Two-column row: name + email -->
                         <div class="input-wrapper">
-                            <input type="text" name="fullname" class="form-input" placeholder="Full name" required
-                                data-form-input>
-                            <input type="email" name="email" class="form-input" placeholder="Email address" required
-                                data-form-input>
+                            <input type="text"  name="fullname" class="form-input" placeholder="Full name"     required data-form-input>
+                            <input type="email" name="email"    class="form-input" placeholder="Email address" required data-form-input>
                         </div>
-                        
+
+                        <!-- Subject line -->
                         <input type="text" name="subject" class="form-input" placeholder="Subject" required data-form-input>
 
-                        <textarea name="message" class="form-input" placeholder="Your Message" required
-                            data-form-input></textarea>
+                        <!-- Message textarea -->
+                        <textarea name="message" class="form-input" placeholder="Your Message" required data-form-input></textarea>
 
-                        <button class="form-btn" type="submit">
+                        <!-- Submit button — disabled by default until form is valid -->
+                        <button class="form-btn" type="submit" disabled>
                             <ion-icon name="paper-plane"></ion-icon>
                             <span>Send Message</span>
                         </button>
@@ -637,8 +1096,23 @@
                 </section>
 
             </article>
+            <!-- /contact -->
 
-            <!-- GITHUB -->
+
+            <!-- ════════════════════════════════════════════
+                 PAGE: GITHUB
+                 ─────────────
+                 Live GitHub repository cards fetched by github_projects.js.
+                 Each card shows: repo name, language, description, stats,
+                 and action links (View on GitHub, Read README).
+
+                 HOW TO CONFIGURE:
+                   Open github_projects.js and update the GitHub username
+                   and any fetch options (e.g. limit, sort, language filter).
+
+                 The README modal (#vg-readme-modal) is opened/closed
+                 by github_projects.js — it is not controlled by script.js.
+                 ════════════════════════════════════════════ -->
             <article class="github" data-page="github">
 
                 <header>
@@ -646,16 +1120,18 @@
                 </header>
 
                 <section class="github-repos">
+                    <!-- Repository cards injected here by github_projects.js -->
                     <div id="vg-projects" class="vg-grid">
-                        <!-- Repos fetched dynamically -->
                         <p>Loading repositories...</p>
                     </div>
                 </section>
 
-                <!-- README MODAL -->
+                <!-- README popup modal — populated by github_projects.js -->
                 <div id="vg-readme-modal" class="vg-modal hidden">
                     <div class="vg-modal-content">
+                        <!-- ✕ close button — wired up in github_projects.js -->
                         <button id="vg-close-modal">✕</button>
+                        <!-- README markdown rendered here -->
                         <div id="vg-readme-body">
                             <p>Loading README...</p>
                         </div>
@@ -663,25 +1139,43 @@
                 </div>
 
             </article>
+            <!-- /github -->
 
+
+            <!-- ── Footer ── -->
             <footer class="footer">
+                <!-- Update year as needed -->
                 <p class="copyright">
                     &copy; 2026 BRUCE BOGE
                 </p>
             </footer>
 
         </div>
+        <!-- /main-content -->
 
         </div>
 
     </div>
+    <!-- /main-container -->
 
-    <!-- MAIN JS -->
+    <!-- ════════════════════════════════════════════════════
+         SCRIPTS
+         ────────
+         Loaded at bottom of <body> so DOM is ready before they run.
+
+         script.js          — Core: sidebar, nav, filter, testimonials modal, form
+         github_projects.js — Fetches & renders GitHub repos + README modal
+         blog.js            — Fetches & renders blog posts
+
+         Ionicons (second pair) — v5.5.2 for any icons loaded after DOMContentLoaded.
+         Two versions are loaded (v7 in <head> and v5.5.2 here) as belt-and-suspenders.
+         You can consolidate to one version if icons all resolve consistently.
+         ════════════════════════════════════════════════════ -->
     <script src="script.js"></script>
     <script src="github_projects.js"></script>
     <script src="blog.js"></script>
 
-    <!-- IONICONS -->
+    <!-- Ionicons v5.5.2 fallback (ESM + nomodule) -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 

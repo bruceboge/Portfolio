@@ -1,0 +1,89 @@
+================================================================================
+                          PORTFOLIO USER DETAILS
+================================================================================
+
+PERSONAL INFORMATION
+================================================================================
+Name: BRUCE BOGE
+Title/Role: Developer
+Location: Nairobi, Kenya
+
+CONTACT INFORMATION
+================================================================================
+Email (Primary): bogebruce6@gmail.com
+Email (Secondary): trionmulti@gmail.com
+Phone: +254746073786
+Company: NECA
+
+PROFESSIONAL SUMMARY
+================================================================================
+A passionate Developer specializing in n8n automation, Web Development, and 
+System Design. With a strong background in building scalable web applications 
+and efficient automation workflows, I prioritize creating seamless user 
+experiences and robust backend systems. My expertise lies in integrating 
+complex APIs, optimizing performance, and designing architectures that stand 
+the test of time.
+
+AREAS OF EXPERTISE
+================================================================================
+1. n8n Automation
+   - Professional development of n8n workflows and Automations for Businesses 
+     and Personal use
+
+2. Web Development
+   - High-quality development of sites and Web apps at the professional level
+
+3. System Design and Development
+   - Architecting scalable, robust, and maintainable software systems 
+     tailored to specific business needs
+
+4. Backend Development
+   - High-performance backend services designed for scalability and seamless 
+     user experience
+
+TECHNICAL SKILLS (Tech Stack)
+================================================================================
+- n8n
+- React
+- Python
+- HTML5
+- CSS3
+- JavaScript
+- Docker
+- Firebase
+- Azure
+
+SOCIAL LINKS & PROFILES
+================================================================================
+LinkedIn: https://www.linkedin.com/in/bruceboge
+GitHub: https://github.com/bruceboge
+Instagram: https://www.instagram.com/brucboge
+Twitter: https://twitter.com/realsanct
+Company Website: https://bruceboge.github.io/neca-website/
+
+PORTFOLIO PROJECTS (Featured)
+================================================================================
+1. ClubVote
+   - A platform for voting and community engagement
+   - Clean UI for real-time voting interactions
+
+2. ClubFlow
+   - Project management and collaboration tool
+   - Intuitive navigation and responsive design
+
+3. n8n Integrations (Digital Sovereign with n8n)
+   - Automation workflow integrations
+   - Connecting multiple services and data sources seamlessly
+
+BLOG
+================================================================================
+Hashnode Blog: bruceboge.hashnode.dev
+
+PORTFOLIO WEBSITE
+================================================================================
+Live Portfolio: https://bruceboge.github.io/Portfolio
+GitHub Repository: https://github.com/bruceboge/Portfolio
+
+================================================================================
+                              END OF DETAILS
+================================================================================
