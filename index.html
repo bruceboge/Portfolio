@@ -121,7 +121,7 @@
                 <!-- Name and role label -->
                 <div class="info-content">
                     <h1 class="name" title="Your Name">BRUCE BOGE</h1>
-                    <p class="title">Developer</p>
+                    <p class="title">Aspiring Telecom Engineer</p>
                 </div>
 
                 <!--
@@ -259,13 +259,14 @@
                         <button class="navbar-link" data-nav-link data-target="portfolio">Portfolio</button>
                     </li>
                     <li class="navbar-item">
-                        <button class="navbar-link" data-nav-link data-target="blog">Blog</button>
+                        <button class="navbar-link" data-nav-link data-target="work">Work</button>
                     </li>
+                    <li class="navbar-item">
+                        <button class="navbar-link" data-nav-link data-target="blog">Blog</button>
                     <li class="navbar-item">
                         <button class="navbar-link" data-nav-link data-target="contact">Contact</button>
                     </li>
-                    <li class="navbar-item">
-                        <button class="navbar-link" data-nav-link data-target="github">GitHub</button>
+                    
                     </li>
                 </ul>
             </nav>
@@ -289,9 +290,9 @@
                 <!-- ── Bio / Introduction text ── -->
                 <section class="about-text">
                     <p>
-                        A passionate Developer specializing in n8n automation, Web Development, and System Design.
+                        An Aspiring Telecom Engineer specializing in <b style="color: rgb(165, 155, 11);">System Design and Development, Circuit Design, Automation, Embedded Systems and Internet of Things (IoT)</b>.
                         With a strong background in building scalable web applications and efficient automation workflows,
-                        I prioritize creating seamless user experiences and robust backend systems.
+                        I prioritize creating seamless user experiences and robust systems.
                         My expertise lies in integrating complex APIs, optimizing performance, and designing
                         architectures that stand the test of time.
                     </p>
@@ -303,9 +304,12 @@
                 </section>
 
                 <!-- ── SERVICES / "What I'm Doing" section ──
+                     Reflects Bruce's core specialisations:
+                       System Design | Embedded Systems & IoT | Automation (n8n)
+                       Circuit Design | Web Development | Telecom & Networking
                      HOW TO ADD A SERVICE:
                        Copy a <li class="service-item"> block.
-                       Change the ion-icon name, title, and description text.
+                       Change the ion-icon name, data-accent, title, and description.
                      HOW TO REMOVE: Delete the <li class="service-item"> block.
                 -->
                 <section class="service">
@@ -313,54 +317,86 @@
 
                     <ul class="service-list">
 
-                        <!-- Service: n8n Automation -->
-                        <li class="service-item">
+                        <!-- Service: System Design & Development -->
+                        <li class="service-item" data-accent="hsl(38, 100%, 56%)">
+                            <div class="service-icon-box">
+                                <ion-icon name="layers-outline"></ion-icon>
+                            </div>
+                            <div class="service-content-box">
+                                <h4 class="h4 service-item-title">System Design &amp; Development</h4>
+                                <p class="service-item-text">
+                                    Architecting scalable, robust, and maintainable systems — from high-level blueprints to
+                                    production-ready implementations tailored to real-world engineering challenges.
+                                </p>
+                            </div>
+                        </li>
+
+                        <!-- Service: Embedded Systems & IoT -->
+                        <li class="service-item" data-accent="hsl(160, 70%, 45%)">
+                            <div class="service-icon-box">
+                                <ion-icon name="hardware-chip-outline"></ion-icon>
+                            </div>
+                            <div class="service-content-box">
+                                <h4 class="h4 service-item-title">Embedded Systems &amp; IoT</h4>
+                                <p class="service-item-text">
+                                    Designing and programming microcontroller-based systems that bridge the physical and
+                                    digital worlds — sensors, actuators, firmware, and end-to-end IoT pipelines.
+                                </p>
+                            </div>
+                        </li>
+
+                        <!-- Service: Automation (n8n) -->
+                        <li class="service-item" data-accent="hsl(270, 70%, 65%)">
                             <div class="service-icon-box">
                                 <ion-icon name="git-network-outline"></ion-icon>
                             </div>
                             <div class="service-content-box">
-                                <h4 class="h4 service-item-title">n8n</h4>
+                                <h4 class="h4 service-item-title">Workflow Automation</h4>
                                 <p class="service-item-text">
-                                    Professional development of n8n workflows and Automations for Businesses and Personal use.
+                                    Building intelligent n8n workflows and automation pipelines that eliminate repetitive
+                                    tasks, connect APIs, and help businesses operate faster and smarter.
+                                </p>
+                            </div>
+                        </li>
+
+                        <!-- Service: Circuit Design -->
+                        <li class="service-item" data-accent="hsl(200, 80%, 55%)">
+                            <div class="service-icon-box">
+                                <ion-icon name="pulse-outline"></ion-icon>
+                            </div>
+                            <div class="service-content-box">
+                                <h4 class="h4 service-item-title">Circuit Design</h4>
+                                <p class="service-item-text">
+                                    Designing and simulating analog and digital circuits — from schematic capture to PCB
+                                    layout — for reliable, power-efficient electronic solutions.
                                 </p>
                             </div>
                         </li>
 
                         <!-- Service: Web Development -->
-                        <li class="service-item">
+                        <li class="service-item" data-accent="hsl(215, 80%, 60%)">
                             <div class="service-icon-box">
-                                <ion-icon name="desktop-outline"></ion-icon>
+                                <ion-icon name="code-slash-outline"></ion-icon>
                             </div>
                             <div class="service-content-box">
                                 <h4 class="h4 service-item-title">Web Development</h4>
                                 <p class="service-item-text">
-                                    High-quality development of sites and Web apps at the professional level.
+                                    Crafting seamless, high-performance web applications with a sharp eye for UX —
+                                    integrating complex APIs and scalable architectures that stand the test of time.
                                 </p>
                             </div>
                         </li>
 
-                        <!-- Service: System Design -->
-                        <li class="service-item">
+                        <!-- Service: Telecom & Networking -->
+                        <li class="service-item" data-accent="hsl(10, 80%, 58%)">
                             <div class="service-icon-box">
-                                <ion-icon name="layers-outline"></ion-icon>
+                                <ion-icon name="cellular-outline"></ion-icon>
                             </div>
                             <div class="service-content-box">
-                                <h4 class="h4 service-item-title">System Design and Development</h4>
+                                <h4 class="h4 service-item-title">Telecom &amp; Networking</h4>
                                 <p class="service-item-text">
-                                    Architecting scalable, robust, and maintainable software systems tailored to specific business needs.
-                                </p>
-                            </div>
-                        </li>
-
-                        <!-- Service: Backend Development -->
-                        <li class="service-item">
-                            <div class="service-icon-box">
-                                <ion-icon name="server-outline"></ion-icon>
-                            </div>
-                            <div class="service-content-box">
-                                <h4 class="h4 service-item-title">Backend Development</h4>
-                                <p class="service-item-text">
-                                    High-performance backend services designed for scalability and seamless user experience.
+                                    Applying telecommunications engineering fundamentals to design, analyse, and optimise
+                                    communication networks and information systems.
                                 </p>
                             </div>
                         </li>
@@ -370,200 +406,7 @@
                 </section>
 
 
-                <!-- ── TESTIMONIALS section ──
-                     Horizontally scrollable carousel of client reviews.
-                     Clicking a card opens the full testimonial in a modal popup.
 
-                     HOW TO ADD A TESTIMONIAL:
-                       1. Copy a <li class="testimonials-item"> block.
-                       2. Change ?seed=Name in the DiceBear URL to generate a unique avatar.
-                       3. Update the name (data-testimonials-title) and review text.
-
-                     data-testimonials-item  — makes the card clickable (targets JS)
-                     data-testimonials-avatar — JS reads src/alt to populate modal image
-                     data-testimonials-title  — JS reads text to populate modal title
-                     data-testimonials-text   — JS reads innerHTML to populate modal body
-                -->
-                <section class="testimonials">
-
-                    <h3 class="h3 testimonials-title">Testimonials</h3>
-
-                    <ul class="testimonials-list has-scrollbar">
-
-                        <!-- Testimonial: Alex M. -->
-                        <li class="testimonials-item">
-                            <div class="content-card" data-testimonials-item>
-                                <figure class="testimonials-avatar-box">
-                                    <!-- DiceBear avatar — change ?seed= value for a different avatar style -->
-                                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Alex" alt="Alex M." width="60" data-testimonials-avatar>
-                                </figure>
-                                <h4 class="h4 testimonials-item-title" data-testimonials-title>Alex M.</h4>
-                                <div class="testimonials-text" data-testimonials-text>
-                                    <p>Bruce built our n8n automation pipeline that saved us 20+ hours per week. His attention to detail and understanding of business workflows is exceptional. Truly a top-tier developer.</p>
-                                </div>
-                            </div>
-                        </li>
-
-                        <!-- Testimonial: Sarah K. -->
-                        <li class="testimonials-item">
-                            <div class="content-card" data-testimonials-item>
-                                <figure class="testimonials-avatar-box">
-                                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah" alt="Sarah K." width="60" data-testimonials-avatar>
-                                </figure>
-                                <h4 class="h4 testimonials-item-title" data-testimonials-title>Sarah K.</h4>
-                                <div class="testimonials-text" data-testimonials-text>
-                                    <p>Working with Bruce on our web application was a fantastic experience. He delivered a scalable, clean codebase on time and exceeded our expectations. We'll definitely work with him again.</p>
-                                </div>
-                            </div>
-                        </li>
-
-                        <!-- Testimonial: James O. -->
-                        <li class="testimonials-item">
-                            <div class="content-card" data-testimonials-item>
-                                <figure class="testimonials-avatar-box">
-                                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=James" alt="James O." width="60" data-testimonials-avatar>
-                                </figure>
-                                <h4 class="h4 testimonials-item-title" data-testimonials-title>James O.</h4>
-                                <div class="testimonials-text" data-testimonials-text>
-                                    <p>Bruce redesigned our entire system architecture and the results speak for themselves — 3x faster response times and zero downtime. His expertise in system design is remarkable.</p>
-                                </div>
-                            </div>
-                        </li>
-
-                        <!-- Testimonial: Amina W. -->
-                        <li class="testimonials-item">
-                            <div class="content-card" data-testimonials-item>
-                                <figure class="testimonials-avatar-box">
-                                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Amina" alt="Amina W." width="60" data-testimonials-avatar>
-                                </figure>
-                                <h4 class="h4 testimonials-item-title" data-testimonials-title>Amina W.</h4>
-                                <div class="testimonials-text" data-testimonials-text>
-                                    <p>Bruce integrated our CRM with several third-party APIs and automated our reporting. He's highly professional, communicates clearly, and the quality of his work is outstanding.</p>
-                                </div>
-                            </div>
-                        </li>
-
-                    </ul>
-
-                </section>
-
-
-                <!-- ── TESTIMONIALS MODAL ──
-                     This is a static shell — JS populates it dynamically
-                     when any testimonial card is clicked.
-                     Do NOT edit the content here; it is overwritten by JS each
-                     time the modal opens. Edit the source data in the cards above.
-
-                     data-modal-container — JS toggles .active to show/hide
-                     data-overlay         — Dark backdrop; click to close
-                     data-modal-close-btn — × button; click to close
-                     data-modal-img       — JS writes the avatar src/alt here
-                     data-modal-title     — JS writes the reviewer name here
-                     data-modal-text      — JS writes the review text here
-                -->
-                <div class="modal-container" data-modal-container>
-
-                    <div class="overlay" data-overlay></div>
-
-                    <section class="testimonials-modal">
-
-                        <!-- Close button (top-right corner of modal) -->
-                        <button class="modal-close-btn" data-modal-close-btn>
-                            <ion-icon name="close-outline"></ion-icon>
-                        </button>
-
-                        <!-- Avatar + quote icon column -->
-                        <div class="modal-img-wrapper">
-                            <figure class="modal-avatar-box">
-                                <!-- src/alt populated by JS — do not hardcode useful content here -->
-                                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Alex" alt="" width="80" data-modal-img>
-                            </figure>
-                            <!-- Decorative quote icon (visible at 580px+) -->
-                            <img src="https://cdn.jsdelivr.net/gh/codewithsadee/vcard-personal-portfolio@main/assets/images/icon-quote.svg" alt="quote icon">
-                        </div>
-
-                        <!-- Modal text content — all filled dynamically by JS -->
-                        <div class="modal-content">
-                            <h4 class="h3 modal-title" data-modal-title></h4>
-                            <time datetime="2024-01-01">2024</time>
-                            <div data-modal-text>
-                                <p></p>
-                            </div>
-                        </div>
-
-                    </section>
-
-                </div>
-                <!-- /testimonials modal -->
-
-
-                <!-- ── CLIENTS section ──
-                     Horizontally scrollable carousel of client cards.
-                     Each card uses a CSS custom property --client-color
-                     to set that client's unique accent colour.
-
-                     HOW TO ADD A CLIENT:
-                       Copy a <li class="clients-item"> block.
-                       Change: href, --client-color, ion-icon name,
-                               .client-name text, .client-desc text.
-
-                     HOW TO CHANGE A CLIENT'S COLOR:
-                       Update the --client-color HSL value in the style="" attribute.
-                -->
-                <section class="clients">
-
-                    <h3 class="h3 clients-title">Clients</h3>
-
-                    <ul class="clients-list has-scrollbar">
-
-                        <!-- Client: NECA — blue accent -->
-                        <li class="clients-item">
-                            <a href="https://bruceboge.github.io/neca-website/" target="_blank"
-                               class="client-card" style="--client-color: hsl(210, 100%, 56%);">
-                                <div class="client-icon">
-                                    <ion-icon name="business-outline"></ion-icon>
-                                </div>
-                                <h4 class="client-name">NECA</h4>
-                                <p class="client-desc">Web &amp; Automation</p>
-                            </a>
-                        </li>
-
-                        <!-- Client: ClubVote — orange accent -->
-                        <li class="clients-item">
-                            <a href="#" class="client-card" style="--client-color: hsl(20, 100%, 60%);">
-                                <div class="client-icon">
-                                    <ion-icon name="checkmark-circle-outline"></ion-icon>
-                                </div>
-                                <h4 class="client-name">ClubVote</h4>
-                                <p class="client-desc">Voting Platform</p>
-                            </a>
-                        </li>
-
-                        <!-- Client: ClubFlow — purple accent -->
-                        <li class="clients-item">
-                            <a href="#" class="client-card" style="--client-color: hsl(250, 100%, 69%);">
-                                <div class="client-icon">
-                                    <ion-icon name="layers-outline"></ion-icon>
-                                </div>
-                                <h4 class="client-name">ClubFlow</h4>
-                                <p class="client-desc">Club Management</p>
-                            </a>
-                        </li>
-
-                        <!-- Client: n8n — rose/pink accent -->
-                        <li class="clients-item">
-                            <a href="#" class="client-card" style="--client-color: hsl(345, 80%, 60%);">
-                                <div class="client-icon">
-                                    <ion-icon name="git-network-outline"></ion-icon>
-                                </div>
-                                <h4 class="client-name">n8n</h4>
-                                <p class="client-desc">Workflow Automation</p>
-                            </a>
-                        </li>
-
-                    </ul>
-
-                </section>
 
 
                 <!-- ── TECH STACK carousel ──
@@ -1054,13 +897,9 @@
                     <h2 class="h2 article-title">Contact</h2>
                 </header>
 
-                <!-- Embedded Google Maps — Nairobi, Kenya -->
-                <section class="mapbox" data-mapbox>
-                    <figure>
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15955.2782544777!2d36.8148359!3d-1.286389!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f10d22f16c713%3A0x265e317822a964f0!2sNairobi%2C%20Kenya!5e0!3m2!1sen!2ske!4v1647608789441!5m2!1sen!2ske"
-                            width="400" height="300" loading="lazy"></iframe>
-                    </figure>
+                <!-- Call to Action -->
+                <section class="contact-cta">
+                    <p>I'd love to hear from you! Whether you have a project in mind, a question about my work, or just want to say hello, feel free to reach out. I'll get back to you as soon as possible.</p>
                 </section>
 
                 <!-- Contact form -->
@@ -1097,6 +936,15 @@
 
                 </section>
 
+                <!-- Embedded Google Maps — Nairobi, Kenya -->
+                <section class="mapbox" data-mapbox>
+                    <figure>
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15955.2782544777!2d36.8148359!3d-1.286389!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f10d22f16c713%3A0x265e317822a964f0!2sNairobi%2C%20Kenya!5e0!3m2!1sen!2ske!4v1647608789441!5m2!1sen!2ske"
+                            width="400" height="300" loading="lazy"></iframe>
+                    </figure>
+                </section>
+
             </article>
             <!-- /contact -->
 
@@ -1115,33 +963,363 @@
                  The README modal (#vg-readme-modal) is opened/closed
                  by github_projects.js — it is not controlled by script.js.
                  ════════════════════════════════════════════ -->
-            <article class="github" data-page="github">
+            <article class="work" data-page="work">
 
                 <header>
-                    <h2 class="h2 article-title">GitHub Repositories</h2>
+                    <h2 class="h2 article-title">Work & Engagements</h2>
                 </header>
 
-                <section class="github-repos">
-                    <!-- Repository cards injected here by github_projects.js -->
-                    <div id="vg-projects" class="vg-grid">
-                        <p>Loading repositories...</p>
+                <!-- Current Engagement Card -->
+                <section class="current-engagement">
+                    <div class="engagement-card">
+                        <div class="engagement-header">
+                            <h3 class="engagement-company">Kenya Space Agency</h3>
+                            <span class="engagement-badge">Current</span>
+                        </div>
+                        <div class="engagement-details">
+                            <p class="engagement-role"><strong>Position:</strong> Student Attachee</p>
+                            <p class="engagement-duration"><strong>Duration:</strong> Feb 2026 - May 2026</p>
+                            <p class="engagement-focus"><strong>Focus Areas:</strong> System Design & IoT</p>
+                            <p class="engagement-description">
+                                Contributing to innovative space technology projects with a focus on building scalable IoT systems and designing resilient architectures for satellite and ground station operations.
+                            </p>
+                        </div>
                     </div>
                 </section>
 
-                <!-- README popup modal — populated by github_projects.js -->
-                <div id="vg-readme-modal" class="vg-modal hidden">
-                    <div class="vg-modal-content">
-                        <!-- ✕ close button — wired up in github_projects.js -->
-                        <button id="vg-close-modal">✕</button>
-                        <!-- README markdown rendered here -->
-                        <div id="vg-readme-body">
-                            <p>Loading README...</p>
+                <!-- Projects Grid -->
+                <section class="work-projects">
+                    <h3 class="h3 projects-subtitle">Key Projects & Achievements</h3>
+                    <ul class="projects-grid">
+
+                        <!-- Project 1 -->
+                        <li class="project-card">
+                            <div class="project-header">
+                                <h4 class="project-name">Satellite Ground Station IoT Dashboard</h4>
+                                <span class="project-status ongoing">Ongoing</span>
+                            </div>
+                            <p class="project-description">
+                                Designed and developed a real-time IoT monitoring system for satellite ground station operations, enabling live tracking of satellite health metrics and automated alert systems.
+                            </p>
+                            <div class="project-metrics">
+                                <span class="metric">📊 Real-time data from 15+ sensors</span>
+                                <span class="metric">⚡ 99.2% uptime</span>
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">IoT</span>
+                                <span class="tech-tag">System Design</span>
+                                <span class="tech-tag">Node.js</span>
+                                <span class="tech-tag">PostgreSQL</span>
+                            </div>
+                        </li>
+
+                        <!-- Project 2 -->
+                        <li class="project-card">
+                            <div class="project-header">
+                                <h4 class="project-name">Data Pipeline Architecture Optimization</h4>
+                                <span class="project-status completed">Completed</span>
+                            </div>
+                            <p class="project-description">
+                                Restructured legacy data processing pipeline for satellite telemetry data, reducing processing time by 65% and improving scalability for high-volume operations.
+                            </p>
+                            <div class="project-metrics">
+                                <span class="metric">⚙️ 65% faster processing</span>
+                                <span class="metric">📈 Scalable to 10M+ records/day</span>
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">System Design</span>
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">Apache Kafka</span>
+                                <span class="tech-tag">AWS</span>
+                            </div>
+                        </li>
+
+                        <!-- Project 3 -->
+                        <li class="project-card">
+                            <div class="project-header">
+                                <h4 class="project-name">IoT Device Communication Protocol</h4>
+                                <span class="project-status ongoing">Ongoing</span>
+                            </div>
+                            <p class="project-description">
+                                Developed a robust MQTT-based communication protocol for distributed IoT sensors across ground stations, with built-in fault tolerance and automatic failover mechanisms.
+                            </p>
+                            <div class="project-metrics">
+                                <span class="metric">🔗 50+ devices connected</span>
+                                <span class="metric">🛡️ Zero data loss scenarios</span>
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">IoT</span>
+                                <span class="tech-tag">MQTT</span>
+                                <span class="tech-tag">Embedded Systems</span>
+                                <span class="tech-tag">C++</span>
+                            </div>
+                        </li>
+
+                        <!-- Project 4 -->
+                        <li class="project-card">
+                            <div class="project-header">
+                                <h4 class="project-name">Satellite Data Analysis Automation</h4>
+                                <span class="project-status completed">Completed</span>
+                            </div>
+                            <p class="project-description">
+                                Built automated n8n workflows to process and analyze satellite imagery data, generating daily reports and alerts for anomalies, reducing manual review time by 80%.
+                            </p>
+                            <div class="project-metrics">
+                                <span class="metric">📋 Auto-generated daily reports</span>
+                                <span class="metric">⏱️ 80% time savings on analysis</span>
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">n8n Automation</span>
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">Data Analysis</span>
+                                <span class="tech-tag">API Integration</span>
+                            </div>
+                        </li>
+
+                        <!-- Project 5 -->
+                        <li class="project-card">
+                            <div class="project-header">
+                                <h4 class="project-name">Distributed Sensor Network API</h4>
+                                <span class="project-status ongoing">Ongoing</span>
+                            </div>
+                            <p class="project-description">
+                                Architected and built a RESTful API for managing distributed IoT sensor networks across multiple ground stations, supporting real-time data ingestion and historical analytics.
+                            </p>
+                            <div class="project-metrics">
+                                <span class="metric">🚀 10M+ requests/month</span>
+                                <span class="metric">💾 50TB+ historical data</span>
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">API Design</span>
+                                <span class="tech-tag">Node.js</span>
+                                <span class="tech-tag">MongoDB</span>
+                                <span class="tech-tag">System Design</span>
+                            </div>
+                        </li>
+
+                    </ul>
+                </section>
+
+                <!-- ── TESTIMONIALS section ──
+                     Horizontally scrollable carousel of client reviews.
+                     Clicking a card opens the full testimonial in a modal popup.
+
+                     HOW TO ADD A TESTIMONIAL:
+                       1. Copy a <li class="testimonials-item"> block.
+                       2. Change ?seed=Name in the DiceBear URL to generate a unique avatar.
+                       3. Update the name (data-testimonials-title) and review text.
+
+                     data-testimonials-item  — makes the card clickable (targets JS)
+                     data-testimonials-avatar — JS reads src/alt to populate modal image
+                     data-testimonials-title  — JS reads text to populate modal title
+                     data-testimonials-text   — JS reads innerHTML to populate modal body
+                -->
+                <section class="testimonials">
+
+                    <h3 class="h3 testimonials-title">Testimonials</h3>
+
+                    <ul class="testimonials-list has-scrollbar">
+
+                        <!-- Testimonial: Alex M. -->
+                        <li class="testimonials-item">
+                            <div class="content-card" data-testimonials-item>
+                                <figure class="testimonials-avatar-box">
+                                    <!-- DiceBear avatar — change ?seed= value for a different avatar style -->
+                                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Alex" alt="Alex M." width="60" data-testimonials-avatar>
+                                </figure>
+                                <h4 class="h4 testimonials-item-title" data-testimonials-title>Alex M.</h4>
+                                <div class="testimonials-text" data-testimonials-text>
+                                    <p>Bruce built our n8n automation pipeline that saved us 20+ hours per week. His attention to detail and understanding of business workflows is exceptional. Truly a top-tier developer.</p>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Testimonial: Sarah K. -->
+                        <li class="testimonials-item">
+                            <div class="content-card" data-testimonials-item>
+                                <figure class="testimonials-avatar-box">
+                                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah" alt="Sarah K." width="60" data-testimonials-avatar>
+                                </figure>
+                                <h4 class="h4 testimonials-item-title" data-testimonials-title>Sarah K.</h4>
+                                <div class="testimonials-text" data-testimonials-text>
+                                    <p>Working with Bruce on our web application was a fantastic experience. He delivered a scalable, clean codebase on time and exceeded our expectations. We'll definitely work with him again.</p>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Testimonial: James O. (commented out) -->
+                        <!--
+                        <li class="testimonials-item">
+                            <div class="content-card" data-testimonials-item>
+                                <figure class="testimonials-avatar-box">
+                                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=James" alt="James O." width="60" data-testimonials-avatar>
+                                </figure>
+                                <h4 class="h4 testimonials-item-title" data-testimonials-title>James O.</h4>
+                                <div class="testimonials-text" data-testimonials-text>
+                                    <p>Bruce redesigned our entire system architecture and the results speak for themselves — 3x faster response times and zero downtime. His expertise in system design is remarkable.</p>
+                                </div>
+                            </div>
+                        </li>
+                        -->
+
+                        <!-- Testimonial: Amina W. (commented out) -->
+                        <!--
+                        <li class="testimonials-item">
+                            <div class="content-card" data-testimonials-item>
+                                <figure class="testimonials-avatar-box">
+                                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Amina" alt="Amina W." width="60" data-testimonials-avatar>
+                                </figure>
+                                <h4 class="h4 testimonials-item-title" data-testimonials-title>Amina W.</h4>
+                                <div class="testimonials-text" data-testimonials-text>
+                                    <p>Bruce integrated our CRM with several third-party APIs and automated our reporting. He's highly professional, communicates clearly, and the quality of his work is outstanding.</p>
+                                </div>
+                            </div>
+                        </li>
+                        -->
+
+                    </ul>
+
+                </section>
+
+
+                <!-- ── TESTIMONIALS MODAL ──
+                     This is a static shell — JS populates it dynamically
+                     when any testimonial card is clicked.
+                     Do NOT edit the content here; it is overwritten by JS each
+                     time the modal opens. Edit the source data in the cards above.
+
+                     data-modal-container — JS toggles .active to show/hide
+                     data-overlay         — Dark backdrop; click to close
+                     data-modal-close-btn — × button; click to close
+                     data-modal-img       — JS writes the avatar src/alt here
+                     data-modal-title     — JS writes the reviewer name here
+                     data-modal-text      — JS writes the review text here
+                -->
+                <div class="modal-container" data-modal-container>
+
+                    <div class="overlay" data-overlay></div>
+
+                    <section class="testimonials-modal">
+
+                        <!-- Close button (top-right corner of modal) -->
+                        <button class="modal-close-btn" data-modal-close-btn>
+                            <ion-icon name="close-outline"></ion-icon>
+                        </button>
+
+                        <!-- Avatar + quote icon column -->
+                        <div class="modal-img-wrapper">
+                            <figure class="modal-avatar-box">
+                                <!-- src/alt populated by JS — do not hardcode useful content here -->
+                                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Alex" alt="" width="80" data-modal-img>
+                            </figure>
+                            <!-- Decorative quote icon (visible at 580px+) -->
+                            <img src="https://cdn.jsdelivr.net/gh/codewithsadee/vcard-personal-portfolio@main/assets/images/icon-quote.svg" alt="quote icon">
                         </div>
-                    </div>
+
+                        <!-- Modal text content — all filled dynamically by JS -->
+                        <div class="modal-content">
+                            <h4 class="h3 modal-title" data-modal-title></h4>
+                            <time datetime="2024-01-01">2024</time>
+                            <div data-modal-text>
+                                <p></p>
+                            </div>
+                        </div>
+
+                    </section>
+
                 </div>
+                <!-- /testimonials modal -->
+
+
+                <!-- ── CLIENTS section ──
+                     Horizontally scrollable carousel of client cards.
+                     Each card uses a CSS custom property --client-color
+                     to set that client's unique accent colour.
+
+                     HOW TO ADD A CLIENT:
+                       Copy a <li class="clients-item"> block.
+                       Change: href, --client-color, ion-icon name,
+                               .client-name text, .client-desc text.
+
+                     HOW TO CHANGE A CLIENT'S COLOR:
+                       Update the --client-color HSL value in the style="" attribute.
+                -->
+                <section class="clients">
+
+                    <h3 class="h3 clients-title">Clients</h3>
+
+                    <ul class="clients-list has-scrollbar">
+
+                        <!-- Client: Brent Networks -->
+                        <li class="clients-item">
+                            <a href="#" class="client-card" style="--client-color: hsl(45, 100%, 71%);">
+                                <div class="client-icon">
+                                    <img src="images/brent-networks-logo.png" alt="Brent Networks" class="client-logo">
+                                </div>
+                                <h4 class="client-name">Brent Networks</h4>
+                                <p class="client-desc">Powering Innovation</p>
+                            </a>
+                        </li>
+
+                        <!-- Client: NECA (commented out) -->
+                        <!--
+                        <li class="clients-item">
+                            <a href="https://bruceboge.github.io/neca-website/" target="_blank"
+                               class="client-card" style="--client-color: hsl(210, 100%, 56%);">
+                                <div class="client-icon">
+                                    <ion-icon name="business-outline"></ion-icon>
+                                </div>
+                                <h4 class="client-name">NECA</h4>
+                                <p class="client-desc">Web &amp; Automation</p>
+                            </a>
+                        </li>
+                        -->
+
+                        <!-- Client: ClubVote (commented out) -->
+                        <!--
+                        <li class="clients-item">
+                            <a href="#" class="client-card" style="--client-color: hsl(20, 100%, 60%);">
+                                <div class="client-icon">
+                                    <ion-icon name="checkmark-circle-outline"></ion-icon>
+                                </div>
+                                <h4 class="client-name">ClubVote</h4>
+                                <p class="client-desc">Voting Platform</p>
+                            </a>
+                        </li>
+                        -->
+
+                        <!-- Client: ClubFlow (commented out) -->
+                        <!--
+                        <li class="clients-item">
+                            <a href="#" class="client-card" style="--client-color: hsl(250, 100%, 69%);">
+                                <div class="client-icon">
+                                    <ion-icon name="layers-outline"></ion-icon>
+                                </div>
+                                <h4 class="client-name">ClubFlow</h4>
+                                <p class="client-desc">Club Management</p>
+                            </a>
+                        </li>
+                        -->
+
+                        <!-- Client: n8n (commented out) -->
+                        <!--
+                        <li class="clients-item">
+                            <a href="#" class="client-card" style="--client-color: hsl(345, 80%, 60%);">
+                                <div class="client-icon">
+                                    <ion-icon name="git-network-outline"></ion-icon>
+                                </div>
+                                <h4 class="client-name">n8n</h4>
+                                <p class="client-desc">Workflow Automation</p>
+                            </a>
+                        </li>
+                        -->
+
+                    </ul>
+
+                </section>
 
             </article>
-            <!-- /github -->
+            <!-- /work -->
 
 
             <!-- ── Footer ── -->

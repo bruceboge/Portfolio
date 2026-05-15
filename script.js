@@ -416,7 +416,29 @@ document.addEventListener("click", function (e) {
    ============================================================ */
 document.addEventListener("DOMContentLoaded", () => {
   initializeFilters();
+  setServiceAccents();
 });
+
+
+/* ============================================================
+  11. SERVICE CARD ACCENT COLOURS
+   ─────────────────────────────────
+   Each <li class="service-item" data-accent="hsl(...)"> carries
+   its own highlight colour as a data attribute.
+   This function transfers those values into CSS custom properties
+   (--item-accent) so the card's border, icon, and hover glow all
+   pick up the right colour without any extra CSS duplication.
+   ============================================================ */
+/**
+ * setServiceAccents — Reads [data-accent] on every .service-item
+ * and sets --item-accent as an inline CSS custom property.
+ * Safe to call multiple times.
+ */
+function setServiceAccents() {
+  document.querySelectorAll(".service-item[data-accent]").forEach((item) => {
+    item.style.setProperty("--item-accent", item.getAttribute("data-accent"));
+  });
+}
 
 /**
  * initializeFilters — Sets up category filtering for both desktop

@@ -207,7 +207,7 @@ body {
 article {
   background: var(--eerie-black-2);
   border: 1px solid var(--jet);
-  border-radius: 20px;
+  border-radius: 8px;
   padding: 15px;
   box-shadow: var(--shadow-1);
   z-index: 1;
@@ -379,7 +379,7 @@ article.active {
 
 .avatar-box {
   background: var(--bg-gradient-onyx);
-  border-radius: 20px;
+  border-radius: 8px;
 }
 
 .avatar-box img {
@@ -402,7 +402,7 @@ article.active {
   font-size: var(--fs-8);
   font-weight: var(--fw-300);
   width: max-content;
-  padding: 3px 12px;
+  padding: 6px 15px;
   border-radius: 8px;
 }
 
@@ -410,7 +410,7 @@ article.active {
   position: absolute;
   top: -15px;
   right: -15px;
-  border-radius: 0 15px;
+  border-radius: 0 8px;
   font-size: 13px;
   color: var(--orange-yellow-crayola);
   background: var(--border-gradient-onyx);
@@ -562,7 +562,7 @@ article.active {
 
 .about-text p { margin-bottom: 15px; }
 
-/* Service Section */
+/* ── Service Section ── */
 .service { margin-bottom: 35px; }
 
 .service-title { margin-bottom: 20px; }
@@ -570,16 +570,33 @@ article.active {
 .service-list {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 20px;
+  gap: 18px;
 }
 
+/*
+  Each card reads --item-accent from an inline style set by JS
+  (script.js → setServiceAccents). Falls back to the gold brand colour.
+*/
 .service-item {
+  --item-accent: var(--orange-yellow-crayola); /* overridden per-card by JS */
   position: relative;
   background: var(--border-gradient-onyx);
-  padding: 20px;
-  border-radius: 14px;
+  padding: 22px 20px;
+  border-radius: 12px;
+  border-top: 3px solid var(--item-accent);
   box-shadow: var(--shadow-2);
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+}
+
+.service-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px hsla(0, 0%, 0%, 0.35),
+              0 0 0 1px var(--item-accent);
 }
 
 .service-item::before {
@@ -591,16 +608,36 @@ article.active {
   z-index: -1;
 }
 
-.service-icon-box { margin-bottom: 10px; }
-
-.service-icon-box img { margin: auto; }
-
+/* ── Icon box ── */
 .service-icon-box {
-  font-size: 40px;
-  color: var(--orange-yellow-crayola);
+  flex-shrink: 0;
+  width: 62px;
+  height: 62px;
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--item-accent) 12%, transparent);
+  border: 1.5px solid color-mix(in srgb, var(--item-accent) 45%, transparent);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28px;
+  color: var(--item-accent);
+  transition: background 0.28s ease, box-shadow 0.28s ease, transform 0.28s ease;
 }
 
-.service-content-box { text-align: center; }
+.service-item:hover .service-icon-box {
+  background: color-mix(in srgb, var(--item-accent) 22%, transparent);
+  box-shadow: 0 0 18px color-mix(in srgb, var(--item-accent) 35%, transparent);
+  transform: scale(1.08) rotate(-3deg);
+}
+
+.service-icon-box img {
+  margin: auto;
+  width: 34px;
+  height: 34px;
+}
+
+/* ── Text area ── */
+.service-content-box { text-align: left; }
 
 .service-item-title {
   margin-bottom: 7px;
@@ -613,7 +650,7 @@ article.active {
   color: var(--light-gray);
   font-size: var(--fs-6);
   font-weight: var(--fw-300);
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
 /* ============================================================
@@ -881,6 +918,18 @@ article.active {
   border-radius: 12px;
   margin-bottom: 2px;
   transition: background 0.25s ease;
+}
+
+.client-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: brightness(1.2) saturate(1.1);
+  transition: filter 0.25s ease;
+}
+
+.client-card:hover .client-logo {
+  filter: brightness(1.4) saturate(1.3);
 }
 
 .client-card:hover .client-icon {
@@ -1397,12 +1446,40 @@ article.active {
    the alert() with a fetch() call. See script.js docs for examples.
    ============================================================ */
 /* ===== CONTACT ===== */
+.contact-cta {
+  color: var(--light-gray);
+  font-size: var(--fs-6);
+  font-weight: var(--fw-300);
+  line-height: 1.6;
+  margin-bottom: 30px;
+  padding: 20px;
+  background: var(--border-gradient-onyx);
+  border: 1px solid var(--jet);
+  border-radius: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+.contact-cta::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  background: var(--bg-gradient-jet);
+  border-radius: inherit;
+  z-index: -1;
+}
+
+.contact-cta p {
+  color: var(--light-gray);
+}
+
 .mapbox {
   position: relative;
-  height: 250px;
+  height: 200px;
   width: 100%;
-  border-radius: 16px;
-  margin-bottom: 30px;
+  border-radius: 8px;
+  margin-top: 30px;
+  margin-bottom: 10px;
   border: 1px solid var(--jet);
   overflow: hidden;
 }
@@ -1671,6 +1748,227 @@ textarea.form-input::-webkit-resizer { display: none; }
 
 #vg-readme-body code { font-family: monospace; }
 
+/* ============================================================
+  16. WORK & ENGAGEMENTS
+   ──────────────────────
+   .current-engagement — Current role/company card
+   .engagement-card    — Box with engagement details
+   .work-projects      — Grid of project achievements
+   .project-card       — Individual project card with metrics
+
+   Features: Status badges, tech tags, impact metrics
+   ============================================================ */
+/* ===== WORK ===== */
+.current-engagement {
+  margin-bottom: 40px;
+}
+
+.engagement-card {
+  position: relative;
+  background: var(--border-gradient-onyx);
+  border: 2px solid var(--orange-yellow-crayola);
+  border-radius: 8px;
+  padding: 25px;
+  box-shadow: var(--shadow-2);
+  z-index: 1;
+}
+
+.engagement-card::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  background: var(--bg-gradient-jet);
+  border-radius: inherit;
+  z-index: -1;
+}
+
+.engagement-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  position: relative;
+  z-index: 2;
+}
+
+.engagement-company {
+  color: var(--white-2);
+  font-size: var(--fs-4);
+  font-weight: 700;
+  margin: 0;
+}
+
+.engagement-badge {
+  background: var(--orange-yellow-crayola);
+  color: var(--eerie-black-1);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.engagement-details {
+  position: relative;
+  z-index: 2;
+}
+
+.engagement-details p {
+  color: var(--light-gray);
+  font-size: var(--fs-6);
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+
+.engagement-details strong {
+  color: var(--white-2);
+  font-weight: 600;
+}
+
+.engagement-description {
+  color: var(--light-gray);
+  font-size: var(--fs-6);
+  line-height: 1.7;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid var(--jet);
+}
+
+/* Work Projects Grid */
+.work-projects {
+  margin-top: 30px;
+}
+
+.projects-subtitle {
+  color: var(--white-2);
+  margin-bottom: 25px;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+}
+
+.project-card {
+  position: relative;
+  background: var(--border-gradient-onyx);
+  border: 1px solid var(--jet);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: var(--shadow-2);
+  z-index: 1;
+  transition: var(--transition-1);
+}
+
+.project-card::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  background: var(--bg-gradient-jet);
+  border-radius: inherit;
+  z-index: -1;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-3);
+  border-color: var(--orange-yellow-crayola);
+}
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 15px;
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 2;
+}
+
+.project-name {
+  color: var(--white-2);
+  font-size: var(--fs-5);
+  font-weight: 600;
+  margin: 0;
+  flex: 1;
+}
+
+.project-status {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.project-status.ongoing {
+  background: rgba(76, 175, 80, 0.2);
+  color: #4caf50;
+  border: 1px solid #4caf50;
+}
+
+.project-status.completed {
+  background: rgba(76, 175, 80, 0.15);
+  color: #66bb6a;
+  border: 1px solid #66bb6a;
+}
+
+.project-description {
+  color: var(--light-gray);
+  font-size: var(--fs-6);
+  line-height: 1.7;
+  margin-bottom: 15px;
+  position: relative;
+  z-index: 2;
+}
+
+.project-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 15px;
+  position: relative;
+  z-index: 2;
+}
+
+.metric {
+  color: var(--orange-yellow-crayola);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 6px 10px;
+  background: rgba(255, 187, 0, 0.1);
+  border-radius: 6px;
+}
+
+.project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  position: relative;
+  z-index: 2;
+}
+
+.tech-tag {
+  color: var(--light-gray-70);
+  background: var(--onyx);
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--jet);
+  transition: var(--transition-1);
+}
+
+.project-card:hover .tech-tag {
+  border-color: var(--orange-yellow-crayola);
+  color: var(--orange-yellow-crayola);
+}
+
 /* ===== FOOTER ===== */
 .footer {
   margin-top: 20px;
@@ -1816,19 +2114,20 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .about-text { margin-bottom: 40px; }
 
-  /* service */
-  .service-item {
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    gap: 18px;
-    padding: 30px;
+  /* service — switch to horizontal icon+text layout at 580px */
+  .service-list {
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 22px;
   }
 
-  .service-icon-box {
-    margin-bottom: 0;
-    margin-top: 5px;
+  .service-item {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 22px;
   }
+
+  .service-icon-box { margin-bottom: 0; }
 
   .service-content-box { text-align: left; }
 
@@ -1943,8 +2242,8 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   /* contact */
   .mapbox {
-    height: 380px;
-    border-radius: 18px;
+    height: 280px;
+    border-radius: 8px;
   }
 
   .input-wrapper {
@@ -1988,6 +2287,12 @@ textarea.form-input::-webkit-resizer { display: none; }
   }
 
   .modal-avatar-box img { width: 80px; }
+
+  /* work */
+  .projects-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+  }
 
   /* portfolio */
   .article-title { padding-bottom: 20px; }
@@ -2127,11 +2432,8 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .navbar-link { font-weight: var(--fw-500); }
 
-  /* service */
-  .service-list {
-    grid-template-columns: 1fr 1fr;
-    gap: 20px 25px;
-  }
+  /* service — already 2-col from 580px; keep at 1024px */
+  .service-list { gap: 22px 28px; }
 
   /* testimonials */
   .testimonials-item { min-width: calc(50% - 15px); }
